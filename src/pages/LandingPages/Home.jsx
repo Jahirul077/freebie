@@ -1,22 +1,81 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import bgImage from '../../assets/Images/bg.png';
 import LeftSide from '../../components/MainComponent/LeftSide';
 import RightSide from '../../components/MainComponent/RightSide';
 
 export default function Home() {
+  const [progress, setProgress] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    let timeoutId;
+
+    const tick = (current) => {
+      let nextProgress = 0;
+      let delay = 1800; // default delay is 1.8s
+
+      if (current === 0) nextProgress = 25;
+      else if (current === 25) nextProgress = 50;
+      else if (current === 50) nextProgress = 75;
+      else if (current === 75) nextProgress = 100;
+      else if (current === 100) {
+        nextProgress = 105; // Go to Success state after 3s
+        delay = 3000;
+      } else if (current === 105) {
+        nextProgress = 0; // Go to 0% after 5s
+        delay = 5000;
+      }
+
+      timeoutId = setTimeout(() => {
+        setProgress(nextProgress);
+        tick(nextProgress);
+      }, delay);
+    };
+
+    tick(progress);
+
+    return () => clearTimeout(timeoutId);
+  }, [isPlaying, progress]);
+
   return (
-    <div className="relative w-full min-h-screen">
+    <div className="relative w-full min-h-screen pb-16">
       <img src={bgImage} alt="Background" className="w-full h-auto object-cover" />
       <div className="absolute top-10 left-0 w-full flex justify-center">
         <div className="w-full max-w-[1700px] px-4">
-          <div className="text-zinc-800 text-7xl font-normal font-['Libre_Caslon_Text'] uppercase leading-[91.08px]">
-            Shine Brighter as You Level Up
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-[#E9DDD4]/40 pb-6">
+            <div className="text-[#333333] text-5xl xl:text-7xl font-normal font-['Libre_Caslon_Text'] uppercase leading-tight">
+              Shine Brighter as You Level Up
+            </div>
+            
+            {/* Play/Pause Demo Toggle Button */}
+            <button
+              onClick={() => setIsPlaying(!isPlaying)}
+              className="flex items-center gap-3 bg-white/90 hover:bg-white border border-[#E9DDD4] hover:border-[#947863] px-6 py-3.5 rounded-full shadow-[0_4px_15px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.08)] transition-all duration-300 font-semibold text-[14px] text-[#4A4A4A] tracking-wider uppercase cursor-pointer select-none active:scale-[0.98] mr-2 shrink-0"
+            >
+              {isPlaying ? (
+                <>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="text-[#947863]">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
+                  </svg>
+                  <span>Pause Demo</span>
+                </>
+              ) : (
+                <>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-[#947863]">
+                    <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clipRule="evenodd" />
+                  </svg>
+                  <span>Play Demo</span>
+                </>
+              )}
+            </button>
           </div>
 
           {/* Content Grid */}
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-            <LeftSide />
-            <RightSide />
+            <LeftSide progress={progress} setProgress={setProgress} />
+            <RightSide progress={progress} />
           </div>
         </div>
       </div>

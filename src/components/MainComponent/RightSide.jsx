@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LockSVG from '../SVG/LockSVG';
+import UnlockSVG from '../SVG/UnlockSVG';
 import StarSVG from '../SVG/StarSVG';
 import CirclesIcon1SVG from '../SVG/CirclesIcon1SVG';
 import Star2SVG from '../SVG/Star2SVG';
+import GiftSVG from '../SVG/GiftSVG';
 
 const tierRewards = [
   { id: 1, text: "WELCOME GIFT\nONE-TIME 10% OFF" },
@@ -17,8 +19,8 @@ const tierRewards = [
   { id: 10, text: "VOTE NEW\nCOLLECTIONS" },
 ];
 
-export default function RightSide() {
-  const [isLocked, setIsLocked] = React.useState(true);
+export default function RightSide({ progress }) {
+  const [isLocked, setIsLocked] = useState(true);
   return (
     <div className="lg:col-span-7 flex flex-col gap-10">
       {/* UNLOCK TIER REWARDS Section */}
@@ -28,22 +30,41 @@ export default function RightSide() {
         </h2>
         <div className="bg-[#F9F6F5]/60 backdrop-blur-md rounded-[20px] p-5 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-white/40">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-            {tierRewards.map((reward) => (
-              <div
-                key={reward.id}
-                className="bg-white rounded-[16px] flex flex-col items-center justify-center p-3 h-[189px] text-center shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
-              >
-                <div className="relative w-16 h-16 flex items-center justify-center mb-2">
-                  <svg viewBox="0 0 50 50" className="absolute inset-0 w-full h-full drop-shadow-[0_2px_4px_rgba(0,0,0,0.04)]">
-                    <path d="M14.5 0.5 L35.5 0.5 L49.5 14.5 L49.5 35.5 L35.5 49.5 L14.5 49.5 L0.5 35.5 L0.5 14.5 Z" fill="white" stroke="#EAEAEA" strokeWidth="1" />
-                  </svg>
-                  <LockSVG className="w-[22px] h-[28px] relative z-10" />
+            {tierRewards.map((reward) => {
+              const isUnlocked = reward.id === 1 && progress >= 100;
+              return (
+                <div
+                  key={reward.id}
+                  className={`bg-white rounded-[16px] flex flex-col items-center justify-center p-3 h-[189px] text-center shadow-[0_2px_10px_rgba(0,0,0,0.02)] border transition-all duration-500 ${isUnlocked ? 'border-[#C5B5A5]' : 'border-transparent'}`}
+                >
+                  <div className="relative w-16 h-16 flex items-center justify-center mb-2">
+                    <svg viewBox="0 0 50 50" className="absolute inset-0 w-full h-full drop-shadow-[0_2px_4px_rgba(0,0,0,0.04)]">
+                      <defs>
+                        <linearGradient id="paint_unlocked_octagon_bg" x1="0" y1="0" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+                          <stop stopColor="#947863" />
+                          <stop offset="0.5" stopColor="#E9DDD4" />
+                          <stop offset="1" stopColor="#947863" />
+                        </linearGradient>
+                      </defs>
+                      <path 
+                        d="M14.5 0.5 L35.5 0.5 L49.5 14.5 L49.5 35.5 L35.5 49.5 L14.5 49.5 L0.5 35.5 L0.5 14.5 Z" 
+                        fill={isUnlocked ? "url(#paint_unlocked_octagon_bg)" : "white"} 
+                        stroke={isUnlocked ? "transparent" : "#EAEAEA"} 
+                        strokeWidth="1" 
+                      />
+                    </svg>
+                    {isUnlocked ? (
+                      <GiftSVG className="w-[30px] h-[30px] relative z-10 transition-transform duration-300 scale-100 hover:scale-105" strokeColor="white" />
+                    ) : (
+                      <LockSVG className="w-[22px] h-[28px] relative z-10 text-[#9C9C9C]" />
+                    )}
+                  </div>
+                  <p className={`text-[13px] font-semibold leading-tight whitespace-pre-line tracking-tight uppercase mt-4 transition-colors duration-500 ${isUnlocked ? 'text-[#333333]' : 'text-[#9C9C9C]'}`}>
+                    {reward.text}
+                  </p>
                 </div>
-                <p className="text-[13px] font-semibold text-[#333333] leading-tight whitespace-pre-line tracking-tight uppercase mt-4">
-                  {reward.text}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
@@ -107,7 +128,7 @@ export default function RightSide() {
 
               {/* Icon 4: Sparkles group */}
               <div className="flex items-center justify-center animate-float-4">
-                <Star2SVG/>
+                <Star2SVG />
               </div>
             </div>
           </div>
@@ -116,16 +137,21 @@ export default function RightSide() {
           {isLocked && (
             <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
               <div className="flex items-center gap-3 mb-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <svg key={i} width="20" height="24" viewBox="0 0 24 28" fill="none" stroke="#333333" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="opacity-80">
-                    <rect x="3" y="10" width="18" height="15" rx="2" ry="2" />
-                    <path d="M7 10V7a5 5 0 0 1 10 0v3" />
-                    <circle cx="12" cy="17" r="1.5" fill="#333333" />
-                  </svg>
-                ))}
+                {progress >= 100 ? (
+                  <>
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
+                    <LockSVG className="w-[22px] h-[28px]" />
+                    <LockSVG className="w-[22px] h-[28px]" />
+                    <LockSVG className="w-[22px] h-[28px]" />
+                  </>
+                ) : (
+                  [1, 2, 3, 4].map((i) => (
+                    <LockSVG key={i} className="w-[22px] h-[28px]" />
+                  ))
+                )}
               </div>
               <p className="text-[13px] font-semibold text-[#333333] tracking-wider uppercase mt-1">
-                SIGN UP TO JOIN VIP LOYALTY UNIVERSE CLUB
+                {progress >= 100 ? "LEVEL UP TO SHINY TIER" : "SIGN UP TO JOIN VIP LOYALTY UNIVERSE CLUB"}
               </p>
             </div>
           )}
