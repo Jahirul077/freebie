@@ -31,14 +31,23 @@ export default function Home() {
         delay = 3000;
       } else if (current === 105) {
         nextProgress = 106;
-        delay = 3000;
+        delay = 1800;
       } else if (current === 106) {
         nextProgress = 107;
-        delay = 3000;
+        delay = 1800;
       } else if (current === 107) {
         nextProgress = 108;
-        delay = 3000;
+        delay = 1800;
       } else if (current === 108) {
+        nextProgress = 110;
+        delay = 3000;
+      } else if (current === 110) {
+        nextProgress = 111;
+        delay = 1000;
+      } else if (current === 111) {
+        nextProgress = 112;
+        delay = 1000;
+      } else if (current === 112) {
         nextProgress = 0;
         delay = 5000;
       }

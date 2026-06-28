@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import LockSVG from '../SVG/LockSVG';
 import UnlockSVG from '../SVG/UnlockSVG';
-import StarSVG from '../SVG/StarSVG';
-import CirclesIcon1SVG from '../SVG/CirclesIcon1SVG';
 import Star2SVG from '../SVG/Star2SVG';
 import GiftSVG from '../SVG/GiftSVG';
+import { MdOutlineLocalShipping } from "react-icons/md";
+
 
 const tierRewards = [
   { id: 1, text: "WELCOME GIFT\nONE-TIME 10% OFF" },
@@ -31,7 +31,9 @@ export default function RightSide({ progress }) {
         <div className="bg-[#F9F6F5]/60 backdrop-blur-md rounded-[20px] p-5 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-white/40">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
             {tierRewards.map((reward) => {
-              const isUnlocked = reward.id === 1 && progress >= 105;
+              const isUnlocked = 
+                (reward.id === 1 && progress >= 105) ||
+                (reward.id === 2 && progress >= 112);
               return (
                 <div
                   key={reward.id}
@@ -54,7 +56,11 @@ export default function RightSide({ progress }) {
                       />
                     </svg>
                     {isUnlocked ? (
-                      <GiftSVG className="w-[30px] h-[30px] relative z-10 transition-transform duration-300 scale-100 hover:scale-105" strokeColor="white" />
+                      reward.id === 2 ? (
+                        <MdOutlineLocalShipping className="w-[30px] h-[30px] relative z-10" color="white" />
+                      ) : (
+                        <GiftSVG className="w-[30px] h-[30px] relative z-10 text-[#9C9C9C]" />
+                      )
                     ) : (
                       <LockSVG className="w-[22px] h-[28px] relative z-10 text-[#9C9C9C]" />
                     )}
@@ -137,7 +143,14 @@ export default function RightSide({ progress }) {
           {isLocked && (
             <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
               <div className="flex items-center gap-3 mb-2">
-                {progress >= 102 ? (
+                {progress >= 112 ? (
+                  <>
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
+                    <LockSVG className="w-[22px] h-[28px]" />
+                    <LockSVG className="w-[22px] h-[28px]" />
+                  </>
+                ) : progress >= 102 ? (
                   <>
                     <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
                     <LockSVG className="w-[22px] h-[28px]" />
@@ -151,7 +164,11 @@ export default function RightSide({ progress }) {
                 )}
               </div>
               <p className="text-[13px] font-semibold text-[#333333] tracking-wider uppercase mt-1">
-                {progress >= 102 ? "LEVEL UP TO SHINY TIER" : "SIGN UP TO JOIN VIP LOYALTY UNIVERSE CLUB"}
+                {progress >= 112 
+                  ? "LEVEL UP TO STARLIGHT TIER" 
+                  : progress >= 102 
+                    ? "LEVEL UP TO SHINY TIER" 
+                    : "SIGN UP TO JOIN VIP LOYALTY UNIVERSE CLUB"}
               </p>
             </div>
           )}
