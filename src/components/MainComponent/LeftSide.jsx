@@ -7,7 +7,7 @@ import LockSVG from '../SVG/LockSVG';
 import UnlockSVG from '../SVG/UnlockSVG';
 import ShipSVG from '../SVG/ShipSVG';
 import Star3SVG from '../SVG/Star3SVG';
-import Star2SVG from '../SVG/Star2SVG';
+import Star4SVG from '../SVG/Star4SVG';
 
 export default function LeftSide({ progress, setProgress }) {
   // Determine style of the '+40 Sparkle Points' text
@@ -35,6 +35,7 @@ export default function LeftSide({ progress, setProgress }) {
                 <GradientRingSVG 
                   active={false} 
                   id="ring1" 
+                  galaxyTheme={progress >= 145}
                   className={`absolute w-[190px] h-[190px] transition-all duration-700 ${progress >= 105 ? '' : 'animate-[spin-slow_40s_linear_infinite]'}`} 
                   style={progress >= 105 ? { transform: 'rotate(0deg)', animation: 'none' } : {}}
                 />
@@ -42,6 +43,7 @@ export default function LeftSide({ progress, setProgress }) {
                 <GradientRingSVG 
                   progress={progress >= 140 ? 105 : progress >= 130 ? 100 : progress >= 128 ? 75 : progress >= 125 ? 50 : progress >= 122 ? 25 : null} 
                   id="ring2" 
+                  galaxyTheme={progress >= 145}
                   className={`absolute w-[165px] h-[165px] transition-all duration-700 ${progress >= 105 ? '' : 'animate-[spin-slow_30s_linear_infinite_reverse]'}`} 
                   style={progress >= 105 ? { transform: 'rotate(0deg)', animation: 'none' } : {}}
                 />
@@ -53,6 +55,7 @@ export default function LeftSide({ progress, setProgress }) {
                     progress === 111 || progress >= 112 ? 105 : null
                   } 
                   id="ring3" 
+                  galaxyTheme={progress >= 145}
                   className={`absolute w-[140px] h-[140px] transition-all duration-700 ${
                     progress === 110 
                       ? 'opacity-0 scale-95 pointer-events-none' 
@@ -70,13 +73,14 @@ export default function LeftSide({ progress, setProgress }) {
                 <GradientRingSVG 
                   progress={progress >= 105 ? 105 : progress} 
                   id="ring4" 
+                  galaxyTheme={progress >= 145}
                   className={`absolute w-[115px] h-[115px] transition-all duration-700 ${
                     progress === 102 
                       ? 'opacity-0 scale-95 pointer-events-none' 
-                      : progress >= 105 
-                        ? 'opacity-50' 
-                        : progress === 100 
-                          ? '' 
+                      : progress === 103 
+                        ? 'opacity-100'
+                        : progress >= 105 
+                          ? 'opacity-50'
                           : 'animate-[spin-slow_10s_linear_infinite_reverse]'
                   }`} 
                   style={progress >= 100 ? { transform: 'rotate(0deg)', animation: 'none' } : {}} 
@@ -84,7 +88,7 @@ export default function LeftSide({ progress, setProgress }) {
 
                 <div className="absolute w-[95px] h-[95px] bg-white rounded-full flex items-center justify-center">
                   {progress >= 145 ? (
-                    <Star2SVG className="w-[67px] h-[67px] relative z-10" />
+                    <Star4SVG className="w-[67px] h-[67px] relative z-10" />
                   ) : progress >= 112 ? (
                     <Star3SVG className="w-[67px] h-[67px] relative z-10" />
                   ) : progress >= 105 ? (
@@ -549,9 +553,9 @@ export default function LeftSide({ progress, setProgress }) {
                       <path d="M12 6C12 10 14 12 18 12C14 12 12 14 12 18C12 14 10 12 6 12C10 12 12 10 12 6Z" fill="url(#paint_galaxy_icon)" opacity="0.8" />
                       <defs>
                         <linearGradient id="paint_galaxy_icon" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-                          <stop stopColor="#68526E" />
-                          <stop offset="0.5" stopColor="#A88FB2" />
-                          <stop offset="1" stopColor="#2E253A" />
+                          <stop stopColor="#483951" />
+                          <stop offset="0.5" stopColor="#675470" />
+                          <stop offset="1" stopColor="#483951" />
                         </linearGradient>
                       </defs>
                     </svg>
@@ -562,7 +566,7 @@ export default function LeftSide({ progress, setProgress }) {
                   </span>
                 </div>
                 
-                <div className="h-[2px] w-full bg-linear-to-r from-[#68526E] via-[#A88FB2] to-[#2E253A] opacity-60"></div>
+                <div className="h-[2px] w-full bg-linear-to-r from-[#483951] via-[#675470] to-[#483951] opacity-60"></div>
                 
                 <div className="flex justify-between items-center pt-1">
                   <div className="flex items-center gap-2">
@@ -571,9 +575,9 @@ export default function LeftSide({ progress, setProgress }) {
                       <path d="M8.5 12.5L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       <defs>
                         <linearGradient id="paint_galaxy_checkmark_bg1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-                          <stop stopColor="#68526E" />
-                          <stop offset="0.5" stopColor="#A88FB2" />
-                          <stop offset="1" stopColor="#2E253A" />
+                          <stop stopColor="#483951" />
+                          <stop offset="0.5" stopColor="#675470" />
+                          <stop offset="1" stopColor="#483951" />
                         </linearGradient>
                       </defs>
                     </svg>
@@ -591,9 +595,9 @@ export default function LeftSide({ progress, setProgress }) {
                       <path d="M8.5 12.5L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       <defs>
                         <linearGradient id="paint_galaxy_checkmark_bg2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-                          <stop stopColor="#68526E" />
-                          <stop offset="0.5" stopColor="#A88FB2" />
-                          <stop offset="1" stopColor="#2E253A" />
+                          <stop stopColor="#483951" />
+                          <stop offset="0.5" stopColor="#675470" />
+                          <stop offset="1" stopColor="#483951" />
                         </linearGradient>
                       </defs>
                     </svg>

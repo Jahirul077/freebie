@@ -56,7 +56,7 @@ export default function RightSide({ progress }) {
               return (
                 <div
                   key={reward.id}
-                  className={`bg-white rounded-[16px] flex flex-col items-center justify-center p-3 h-[189px] text-center shadow-[0_2px_10px_rgba(0,0,0,0.02)] border transition-all duration-500 ${isUnlocked ? (progress >= 145 ? 'border-[#68526E]/60 shadow-[0_4px_15px_rgba(104,82,110,0.06)]' : 'border-[#C5B5A5]') : 'border-transparent'}`}
+                  className={`bg-white rounded-[16px] flex flex-col items-center justify-center p-3 h-[189px] text-center shadow-[0_2px_10px_rgba(0,0,0,0.02)] border transition-all duration-500 ${isUnlocked ? (progress >= 145 ? 'border-[#483951]/60 shadow-[0_4px_15px_rgba(72,57,81,0.06)]' : 'border-[#C5B5A5]') : 'border-transparent'}`}
                 >
                   <div className="relative w-16 h-16 flex items-center justify-center mb-2">
                     <svg viewBox="0 0 50 50" className="absolute inset-0 w-full h-full drop-shadow-[0_2px_4px_rgba(0,0,0,0.04)]">
@@ -67,9 +67,9 @@ export default function RightSide({ progress }) {
                           <stop offset="1" stopColor="#947863" />
                         </linearGradient>
                         <linearGradient id="paint_unlocked_octagon_galaxy_bg" x1="0" y1="0" x2="50" y2="50" gradientUnits="userSpaceOnUse">
-                          <stop stopColor="#68526E" />
-                          <stop offset="0.5" stopColor="#A88FB2" />
-                          <stop offset="1" stopColor="#2E253A" />
+                          <stop stopColor="#483951" />
+                          <stop offset="0.5" stopColor="#675470" />
+                          <stop offset="1" stopColor="#483951" />
                         </linearGradient>
                       </defs>
                       <path 
@@ -208,10 +208,10 @@ export default function RightSide({ progress }) {
               <div className="flex items-center gap-3 mb-2">
                 {progress >= 145 ? (
                   <>
-                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#68526E]" />
-                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#68526E]" />
-                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#68526E]" />
-                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#68526E]" />
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#483951]" />
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#483951]" />
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#483951]" />
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#483951]" />
                   </>
                 ) : progress >= 122 ? (
                   <>
