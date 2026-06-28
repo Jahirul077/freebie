@@ -32,7 +32,7 @@ export default function LeftSide({ progress, setProgress }) {
                 <GradientRingSVG active={false} id="ring1" className={`absolute w-[190px] h-[190px] transition-all duration-700 ${progress >= 105 ? '' : 'animate-[spin-slow_40s_linear_infinite]'}`} />
                 <GradientRingSVG active={false} id="ring2" className={`absolute w-[165px] h-[165px] transition-all duration-700 ${progress >= 105 ? '' : 'animate-[spin-slow_30s_linear_infinite_reverse]'}`} />
                 <GradientRingSVG 
-                  progress={progress === 105 || progress === 106 ? 40 : progress === 107 ? 70 : null} 
+                  progress={progress === 105 || progress === 106 ? 40 : progress === 107 ? 70 : progress === 108 ? 100 : null} 
                   id="ring3" 
                   className={`absolute w-[140px] h-[140px] transition-all duration-700 ${
                     progress >= 105 
@@ -80,7 +80,7 @@ export default function LeftSide({ progress, setProgress }) {
             <div className={`bg-white rounded-[16px] flex-[1.2] flex flex-col items-center justify-center py-8 border transition-all duration-1000 ${progress >= 105 ? 'border-[#C5B5A5]' : progress >= 25 ? 'border-[#E9DDD4]' : 'border-transparent'}`}>
               <div className="flex items-center gap-1">
                 <span className="text-[80px] font-bold text-[#1E1E1E] leading-none transition-all duration-500">
-                  {progress === 107 ? '70+' : progress >= 100 ? '40' : progress >= 75 ? '40+' : '0+'}
+                  {progress === 108 ? '100' : progress === 107 ? '70+' : progress >= 100 ? '40' : progress >= 75 ? '40+' : '0+'}
                 </span>
                 <StarSVG />
               </div>
@@ -102,7 +102,8 @@ export default function LeftSide({ progress, setProgress }) {
               else if (progress === 103) setProgress(105);
               else if (progress === 105) setProgress(106);
               else if (progress === 106) setProgress(107);
-              else if (progress === 107) setProgress(0);
+              else if (progress === 107) setProgress(108);
+              else if (progress === 108) setProgress(0);
             }}
             className="w-full bg-white rounded-[16px] p-6 flex flex-col overflow-hidden relative transition-all duration-500 min-h-[156px] cursor-pointer hover:shadow-md hover:border-[#E9DDD4] active:scale-[0.99]"
           >
@@ -224,7 +225,7 @@ export default function LeftSide({ progress, setProgress }) {
                 
                 <div className="flex justify-between items-center pt-1">
                   <div className="flex items-center gap-2">
-                    {progress === 106 || progress === 107 ? (
+                    {progress >= 106 ? (
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="10" fill="url(#paint_shiny_checkmark_bg)" />
                         <path d="M8.5 12.5L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -254,7 +255,7 @@ export default function LeftSide({ progress, setProgress }) {
                     >
                       +30 Sparkle Points
                     </span>
-                  ) : progress === 107 ? (
+                  ) : progress >= 107 ? (
                     <span className="text-[17px] font-semibold text-[#947863] line-through decoration-[#947863] decoration-2">
                       +30 Sparkle Points
                     </span>
@@ -267,7 +268,7 @@ export default function LeftSide({ progress, setProgress }) {
 
                 <div className="flex justify-between items-center pt-1">
                   <div className="flex items-center gap-2">
-                    {progress === 107 ? (
+                    {progress >= 107 ? (
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="10" fill="url(#paint_shiny_checkmark_bg2)" />
                         <path d="M8.5 12.5L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -295,6 +296,10 @@ export default function LeftSide({ progress, setProgress }) {
                       }} 
                       className="text-[17px] font-bold"
                     >
+                      +30 Sparkle Points
+                    </span>
+                  ) : progress >= 108 ? (
+                    <span className="text-[17px] font-semibold text-[#947863] line-through decoration-[#947863] decoration-2">
                       +30 Sparkle Points
                     </span>
                   ) : (
