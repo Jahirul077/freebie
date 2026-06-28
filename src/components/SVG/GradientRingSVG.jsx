@@ -26,8 +26,8 @@ export default function GradientRingSVG({ className, strokeWidth = "6", progress
           strokeWidth={strokeWidth}
           vectorEffect="non-scaling-stroke"
           transform="rotate(-90 50 50)"
-          strokeDasharray={isFull ? undefined : circumference}
-          strokeDashoffset={isFull ? undefined : strokeDashoffset}
+          strokeDasharray={isFull ? circumference + 20 : circumference}
+          strokeDashoffset={isFull ? 0 : strokeDashoffset}
           className="transition-all duration-700 ease-in-out"
           style={{ strokeLinecap: 'round' }}
         />
