@@ -412,15 +412,8 @@ export default function LeftSide({ progress, setProgress }) {
                   <div className="flex items-center gap-2">
                     {progress >= 116 ? (
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="url(#paint_starlight_checkmark_bg)" />
-                        <path d="M8.5 12.5L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        <defs>
-                          <linearGradient id="paint_starlight_checkmark_bg" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-                            <stop stopColor="#947863" />
-                            <stop offset="0.5" stopColor="#E9DDD4" />
-                            <stop offset="1" stopColor="#947863" />
-                          </linearGradient>
-                        </defs>
+                        <circle cx="12" cy="12" r="10" fill="#EAEAEA" />
+                        <path d="M8.5 12.5L11 15L16 9" stroke="#9C9C9C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     ) : (
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#333333]">
@@ -438,15 +431,8 @@ export default function LeftSide({ progress, setProgress }) {
                   <div className="flex items-center gap-2">
                     {progress >= 117 ? (
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="url(#paint_starlight_checkmark_bg2)" />
-                        <path d="M8.5 12.5L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        <defs>
-                          <linearGradient id="paint_starlight_checkmark_bg2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-                            <stop stopColor="#947863" />
-                            <stop offset="0.5" stopColor="#E9DDD4" />
-                            <stop offset="1" stopColor="#947863" />
-                          </linearGradient>
-                        </defs>
+                        <circle cx="12" cy="12" r="10" fill="#EAEAEA" />
+                        <path d="M8.5 12.5L11 15L16 9" stroke="#9C9C9C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     ) : (
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#333333]">
