@@ -32,12 +32,7 @@ export default function LeftSide({ progress, setProgress }) {
               <div className="w-[180px] h-[180px] relative flex items-center justify-center">
                 {/* Outermost three rings are always gray base (active=false) */}
                 <GradientRingSVG active={false} id="ring1" className={`absolute w-[190px] h-[190px] transition-all duration-700 ${progress >= 105 ? '' : 'animate-[spin-slow_40s_linear_infinite]'}`} />
-                <GradientRingSVG 
-                  active={progress >= 120} 
-                  progress={progress >= 120 ? 25 : null} 
-                  id="ring2" 
-                  className={`absolute w-[165px] h-[165px] transition-all duration-700 ${progress >= 105 ? '' : 'animate-[spin-slow_30s_linear_infinite_reverse]'}`} 
-                />
+                <GradientRingSVG active={false} id="ring2" className={`absolute w-[165px] h-[165px] transition-all duration-700 ${progress >= 105 ? '' : 'animate-[spin-slow_30s_linear_infinite_reverse]'}`} />
                 <GradientRingSVG 
                   progress={
                     progress === 105 || progress === 106 ? 40 : 
@@ -99,11 +94,7 @@ export default function LeftSide({ progress, setProgress }) {
             {/* Points Box */}
             <div className={`bg-white rounded-[16px] flex-[1.2] flex flex-col items-center justify-center py-8 border transition-all duration-1000 ${progress >= 105 ? 'border-[#C5B5A5]' : progress >= 25 ? 'border-[#E9DDD4]' : 'border-transparent'}`}>
               <div className="flex items-center gap-1">
-                {progress >= 120 ? (
-                  <span className="text-[80px] font-bold text-[#1E1E1E] leading-none transition-all duration-500">
-                    225
-                  </span>
-                ) : progress === 112 ? (
+                {progress === 112 ? (
                   <span 
                     style={{ 
                       backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)', 
@@ -148,11 +139,7 @@ export default function LeftSide({ progress, setProgress }) {
               else if (progress === 110) setProgress(111);
               else if (progress === 111) setProgress(112);
               else if (progress === 112) setProgress(115);
-              else if (progress === 115) setProgress(116);
-              else if (progress === 116) setProgress(117);
-              else if (progress === 117) setProgress(118);
-              else if (progress === 118) setProgress(120);
-              else if (progress === 120) setProgress(0);
+              else if (progress === 115) setProgress(0);
             }}
             className="w-full bg-white rounded-[16px] p-6 flex flex-col overflow-hidden relative transition-all duration-500 min-h-[156px] cursor-pointer hover:shadow-md hover:border-[#E9DDD4] active:scale-[0.99]"
           >
@@ -410,16 +397,9 @@ export default function LeftSide({ progress, setProgress }) {
                 
                 <div className="flex justify-between items-center pt-1">
                   <div className="flex items-center gap-2">
-                    {progress >= 116 ? (
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="#EAEAEA" />
-                        <path d="M8.5 12.5L11 15L16 9" stroke="#9C9C9C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    ) : (
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#333333]">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    )}
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#333333]">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
                     <span className="text-[17px] font-medium text-[#333333]">Purchase Items</span>
                   </div>
                   <span className="text-[17px] font-semibold text-[#333333]">
@@ -429,16 +409,9 @@ export default function LeftSide({ progress, setProgress }) {
 
                 <div className="flex justify-between items-center pt-1">
                   <div className="flex items-center gap-2">
-                    {progress >= 117 ? (
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="#EAEAEA" />
-                        <path d="M8.5 12.5L11 15L16 9" stroke="#9C9C9C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    ) : (
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#333333]">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    )}
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#333333]">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
                     <span className="text-[17px] font-medium text-[#333333]">Refer a Friend</span>
                   </div>
                   <span className="text-[17px] font-semibold text-[#333333]">
@@ -469,7 +442,7 @@ export default function LeftSide({ progress, setProgress }) {
                 { type: 'text', val: '35%' },
                 { type: 'icon', val: '✦' }
               ].map((item, idx) => {
-                const isFilled = idx === 0 && progress >= 120;
+                const isFilled = idx === 0 && progress >= 115;
                 return (
                   <div key={idx} className="relative w-[68px] h-[68px] flex items-center justify-center group cursor-pointer transition-transform duration-300 hover:-translate-y-1">
                     {/* Jewel Diamond Shape */}
@@ -510,13 +483,11 @@ export default function LeftSide({ progress, setProgress }) {
           </div>
 
           <span className="text-[#333333] text-2xl font-medium tracking-wide uppercase">
-            {progress >= 120 
+            {progress >= 115 
               ? "BUY 1ST | SAVE 20%" 
-              : progress >= 115 
-                ? "UNLOCKED STARLIGHT TIER LEVEL" 
-                : progress >= 110 
-                  ? "LEVEL UP TO STARLIGHT TIER" 
-                  : "LEVEL UP TO SHINY TIER"}
+              : progress >= 110 
+                ? "LEVEL UP TO STARLIGHT TIER" 
+                : "LEVEL UP TO SHINY TIER"}
           </span>
         </div>
       </div>
