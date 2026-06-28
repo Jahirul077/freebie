@@ -3,7 +3,7 @@ import React from 'react';
 export default function GradientRingSVG({ className, strokeWidth = "6", progress }) {
   const hasProgress = typeof progress === 'number';
   const circumference = 314.159;
-  const displayProgress = progress === 105 ? 100 : progress;
+  const displayProgress = progress >= 100 ? 100 : progress;
   const strokeDashoffset = hasProgress ? circumference - (circumference * displayProgress) / 100 : 0;
 
   return (
@@ -18,7 +18,7 @@ export default function GradientRingSVG({ className, strokeWidth = "6", progress
         vectorEffect="non-scaling-stroke"
       />
       {/* Gold Progress Overlay Circle */}
-      {hasProgress && progress > 0 && progress !== 105 && (
+      {hasProgress && progress > 0 && progress !== 102 && progress !== 103 && progress !== 105 && (
         <circle
           cx="50"
           cy="50"
@@ -33,8 +33,8 @@ export default function GradientRingSVG({ className, strokeWidth = "6", progress
           style={{ strokeLinecap: 'round' }}
         />
       )}
-      {/* Wavy/Rough Gold Ring at 105% */}
-      {hasProgress && progress === 105 && (
+      {/* Wavy/Rough Gold Ring at 103% & 105% */}
+      {hasProgress && (progress === 103 || progress === 105) && (
         <circle
           cx="50"
           cy="50"
