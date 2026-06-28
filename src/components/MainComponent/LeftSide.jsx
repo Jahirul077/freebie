@@ -223,14 +223,41 @@ export default function LeftSide({ progress, setProgress }) {
                 
                 <div className="flex justify-between items-center pt-1">
                   <div className="flex items-center gap-2">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#333333]">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                    {progress === 106 ? (
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="url(#paint_shiny_checkmark_bg)" />
+                        <path d="M8.5 12.5L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <defs>
+                          <linearGradient id="paint_shiny_checkmark_bg" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                            <stop stopColor="#947863" />
+                            <stop offset="0.5" stopColor="#E9DDD4" />
+                            <stop offset="1" stopColor="#947863" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    ) : (
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#333333]">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    )}
                     <span className="text-[17px] font-medium text-[#333333]">Follow us on Instagram</span>
                   </div>
-                  <span className="text-[17px] font-semibold text-[#9C9C9C]">
-                    +30 Sparkle Points
-                  </span>
+                  {progress === 106 ? (
+                    <span 
+                      style={{ 
+                        backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)', 
+                        WebkitBackgroundClip: 'text', 
+                        WebkitTextFillColor: 'transparent' 
+                      }} 
+                      className="text-[17px] font-bold"
+                    >
+                      +30 Sparkle Points
+                    </span>
+                  ) : (
+                    <span className="text-[17px] font-semibold text-[#9C9C9C]">
+                      +30 Sparkle Points
+                    </span>
+                  )}
                 </div>
 
                 <div className="flex justify-between items-center pt-1">
