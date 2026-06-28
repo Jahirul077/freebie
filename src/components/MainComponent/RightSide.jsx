@@ -43,7 +43,12 @@ export default function RightSide({ progress }) {
                 (reward.id === 9 && progress >= 140);
 
               let displayText = reward.text;
-              if (progress >= 115) {
+              if (progress >= 145) {
+                if (reward.id === 1) displayText = "WELCOME GIFT\nONE-TIME 20% OFF";
+                if (reward.id === 2) displayText = "FREE SHIPPING\nON ALL ORDERS";
+                if (reward.id === 4) displayText = "BIRTHDAY GIFT\nREWARD $20";
+                if (reward.id === 5) displayText = "MEMBER\nSAVING 15% OFF";
+              } else if (progress >= 115) {
                 if (reward.id === 1) displayText = "WELCOME GIFT\nONE-TIME 15% OFF";
                 if (reward.id === 2) displayText = "FREE SHIPPING\nON ALL ORDERS";
               }
@@ -51,7 +56,7 @@ export default function RightSide({ progress }) {
               return (
                 <div
                   key={reward.id}
-                  className={`bg-white rounded-[16px] flex flex-col items-center justify-center p-3 h-[189px] text-center shadow-[0_2px_10px_rgba(0,0,0,0.02)] border transition-all duration-500 ${isUnlocked ? 'border-[#C5B5A5]' : 'border-transparent'}`}
+                  className={`bg-white rounded-[16px] flex flex-col items-center justify-center p-3 h-[189px] text-center shadow-[0_2px_10px_rgba(0,0,0,0.02)] border transition-all duration-500 ${isUnlocked ? (progress >= 145 ? 'border-[#68526E]/60 shadow-[0_4px_15px_rgba(104,82,110,0.06)]' : 'border-[#C5B5A5]') : 'border-transparent'}`}
                 >
                   <div className="relative w-16 h-16 flex items-center justify-center mb-2">
                     <svg viewBox="0 0 50 50" className="absolute inset-0 w-full h-full drop-shadow-[0_2px_4px_rgba(0,0,0,0.04)]">
@@ -61,10 +66,15 @@ export default function RightSide({ progress }) {
                           <stop offset="0.5" stopColor="#E9DDD4" />
                           <stop offset="1" stopColor="#947863" />
                         </linearGradient>
+                        <linearGradient id="paint_unlocked_octagon_galaxy_bg" x1="0" y1="0" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+                          <stop stopColor="#68526E" />
+                          <stop offset="0.5" stopColor="#A88FB2" />
+                          <stop offset="1" stopColor="#2E253A" />
+                        </linearGradient>
                       </defs>
                       <path 
                         d="M14.5 0.5 L35.5 0.5 L49.5 14.5 L49.5 35.5 L35.5 49.5 L14.5 49.5 L0.5 35.5 L0.5 14.5 Z" 
-                        fill={isUnlocked ? "url(#paint_unlocked_octagon_bg)" : "white"} 
+                        fill={isUnlocked ? (progress >= 145 ? "url(#paint_unlocked_octagon_galaxy_bg)" : "url(#paint_unlocked_octagon_bg)") : "white"} 
                         stroke={isUnlocked ? "transparent" : "#EAEAEA"} 
                         strokeWidth="1" 
                       />
@@ -196,7 +206,14 @@ export default function RightSide({ progress }) {
           {isLocked && (
             <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
               <div className="flex items-center gap-3 mb-2">
-                {progress >= 122 ? (
+                {progress >= 145 ? (
+                  <>
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#68526E]" />
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#68526E]" />
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#68526E]" />
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#68526E]" />
+                  </>
+                ) : progress >= 122 ? (
                   <>
                     <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
                     <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
@@ -231,15 +248,17 @@ export default function RightSide({ progress }) {
                 )}
               </div>
               <p className="text-[13px] font-semibold text-[#333333] tracking-wider uppercase mt-1">
-                {progress >= 122
-                  ? "LEVEL UP TO GALAXY TIER"
-                  : progress >= 115 
-                    ? "UNLOCKED STARLIGHT TIER LEVEL" 
-                    : progress >= 112 
-                      ? "LEVEL UP TO STARLIGHT TIER" 
-                      : progress >= 102 
-                        ? "LEVEL UP TO SHINY TIER" 
-                        : "SIGN UP TO JOIN VIP LOYALTY UNIVERSE CLUB"}
+                {progress >= 145
+                  ? "UNLOCKED GALAXY TIER LEVEL"
+                  : progress >= 122
+                    ? "LEVEL UP TO GALAXY TIER"
+                    : progress >= 115 
+                      ? "UNLOCKED STARLIGHT TIER LEVEL" 
+                      : progress >= 112 
+                        ? "LEVEL UP TO STARLIGHT TIER" 
+                        : progress >= 102 
+                          ? "LEVEL UP TO SHINY TIER" 
+                          : "SIGN UP TO JOIN VIP LOYALTY UNIVERSE CLUB"}
               </p>
             </div>
           )}
