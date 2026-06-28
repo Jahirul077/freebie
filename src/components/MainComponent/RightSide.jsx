@@ -34,7 +34,8 @@ export default function RightSide({ progress }) {
               const isUnlocked = 
                 (reward.id === 1 && progress >= 105) ||
                 (reward.id === 2 && progress >= 112) ||
-                (reward.id === 3 && progress >= 115);
+                (reward.id === 3 && progress >= 115) ||
+                (reward.id === 4 && progress >= 120);
 
               let displayText = reward.text;
               if (progress >= 115) {
@@ -70,6 +71,14 @@ export default function RightSide({ progress }) {
                         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10">
                           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                           <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                      ) : reward.id === 4 ? (
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10">
+                          <path d="M18 20H6a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2Z" />
+                          <path d="M16 13V9a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v4" />
+                          <line x1="12" y1="7" x2="12" y2="4" />
+                          <line x1="9" y1="7" x2="9" y2="5" />
+                          <line x1="15" y1="7" x2="15" y2="5" />
                         </svg>
                       ) : (
                         <GiftSVG className="w-[30px] h-[30px] relative z-10 text-[#9C9C9C]" />
@@ -156,7 +165,14 @@ export default function RightSide({ progress }) {
           {isLocked && (
             <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
               <div className="flex items-center gap-3 mb-2">
-                {progress >= 115 ? (
+                {progress >= 120 ? (
+                  <>
+                    <LockSVG className="w-[22px] h-[28px]" />
+                    <LockSVG className="w-[22px] h-[28px]" />
+                    <LockSVG className="w-[22px] h-[28px]" />
+                    <LockSVG className="w-[22px] h-[28px]" />
+                  </>
+                ) : progress >= 115 ? (
                   <>
                     <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
                     <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
@@ -184,13 +200,15 @@ export default function RightSide({ progress }) {
                 )}
               </div>
               <p className="text-[13px] font-semibold text-[#333333] tracking-wider uppercase mt-1">
-                {progress >= 115 
-                  ? "UNLOCKED STARLIGHT TIER LEVEL" 
-                  : progress >= 112 
-                    ? "LEVEL UP TO STARLIGHT TIER" 
-                    : progress >= 102 
-                      ? "LEVEL UP TO SHINY TIER" 
-                      : "SIGN UP TO JOIN VIP LOYALTY UNIVERSE CLUB"}
+                {progress >= 120 
+                  ? "LEVEL UP TO GALAXY TIER" 
+                  : progress >= 115 
+                    ? "UNLOCKED STARLIGHT TIER LEVEL" 
+                    : progress >= 112 
+                      ? "LEVEL UP TO STARLIGHT TIER" 
+                      : progress >= 102 
+                        ? "LEVEL UP TO SHINY TIER" 
+                        : "SIGN UP TO JOIN VIP LOYALTY UNIVERSE CLUB"}
               </p>
             </div>
           )}

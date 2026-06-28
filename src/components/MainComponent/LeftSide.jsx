@@ -32,7 +32,12 @@ export default function LeftSide({ progress, setProgress }) {
               <div className="w-[180px] h-[180px] relative flex items-center justify-center">
                 {/* Outermost three rings are always gray base (active=false) */}
                 <GradientRingSVG active={false} id="ring1" className={`absolute w-[190px] h-[190px] transition-all duration-700 ${progress >= 105 ? '' : 'animate-[spin-slow_40s_linear_infinite]'}`} />
-                <GradientRingSVG active={false} id="ring2" className={`absolute w-[165px] h-[165px] transition-all duration-700 ${progress >= 105 ? '' : 'animate-[spin-slow_30s_linear_infinite_reverse]'}`} />
+                <GradientRingSVG 
+                  active={progress >= 120} 
+                  progress={progress >= 120 ? 25 : null} 
+                  id="ring2" 
+                  className={`absolute w-[165px] h-[165px] transition-all duration-700 ${progress >= 105 ? '' : 'animate-[spin-slow_30s_linear_infinite_reverse]'}`} 
+                />
                 <GradientRingSVG 
                   progress={
                     progress === 105 || progress === 106 ? 40 : 
@@ -94,7 +99,11 @@ export default function LeftSide({ progress, setProgress }) {
             {/* Points Box */}
             <div className={`bg-white rounded-[16px] flex-[1.2] flex flex-col items-center justify-center py-8 border transition-all duration-1000 ${progress >= 105 ? 'border-[#C5B5A5]' : progress >= 25 ? 'border-[#E9DDD4]' : 'border-transparent'}`}>
               <div className="flex items-center gap-1">
-                {progress === 112 ? (
+                {progress >= 120 ? (
+                  <span className="text-[80px] font-bold text-[#1E1E1E] leading-none transition-all duration-500">
+                    225
+                  </span>
+                ) : progress === 112 ? (
                   <span 
                     style={{ 
                       backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)', 
@@ -142,7 +151,8 @@ export default function LeftSide({ progress, setProgress }) {
               else if (progress === 115) setProgress(116);
               else if (progress === 116) setProgress(117);
               else if (progress === 117) setProgress(118);
-              else if (progress === 118) setProgress(0);
+              else if (progress === 118) setProgress(120);
+              else if (progress === 120) setProgress(0);
             }}
             className="w-full bg-white rounded-[16px] p-6 flex flex-col overflow-hidden relative transition-all duration-500 min-h-[156px] cursor-pointer hover:shadow-md hover:border-[#E9DDD4] active:scale-[0.99]"
           >
@@ -472,23 +482,33 @@ export default function LeftSide({ progress, setProgress }) {
                 { type: 'text', val: '25%' },
                 { type: 'text', val: '35%' },
                 { type: 'icon', val: '✦' }
-              ].map((item, idx) => (
-                <div key={idx} className="relative w-[68px] h-[68px] flex items-center justify-center group cursor-pointer transition-transform duration-300 hover:-translate-y-1">
-                  {/* Jewel Diamond Shape */}
-                  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full drop-shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
-                    <path d="M5 2H19L24 9L12 22L0 9L5 2Z" />
-                  </svg>
-                  {item.type === 'text' ? (
-                    <span className="relative z-10 text-[15px] font-bold text-[#333333] -mt-1 select-none">
-                      {item.val}
-                    </span>
-                  ) : (
-                    <span className="relative z-10 text-[20px] font-bold text-[#333333] -mt-1 select-none">
-                      {item.val}
-                    </span>
-                  )}
-                </div>
-              ))
+              ].map((item, idx) => {
+                const isFilled = idx === 0 && progress >= 120;
+                return (
+                  <div key={idx} className="relative w-[68px] h-[68px] flex items-center justify-center group cursor-pointer transition-transform duration-300 hover:-translate-y-1">
+                    {/* Jewel Diamond Shape */}
+                    <svg viewBox="0 0 24 24" fill={isFilled ? "url(#paint_starlight_diamond_bg)" : "white"} xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full drop-shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+                      <defs>
+                        <linearGradient id="paint_starlight_diamond_bg" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                          <stop stopColor="#947863" />
+                          <stop offset="0.5" stopColor="#E9DDD4" />
+                          <stop offset="1" stopColor="#947863" />
+                        </linearGradient>
+                      </defs>
+                      <path d="M5 2H19L24 9L12 22L0 9L5 2Z" />
+                    </svg>
+                    {item.type === 'text' ? (
+                      <span className={`relative z-10 text-[15px] font-bold -mt-1 select-none ${isFilled ? 'text-white' : 'text-[#333333]'}`}>
+                        {item.val}
+                      </span>
+                    ) : (
+                      <span className={`relative z-10 text-[20px] font-bold -mt-1 select-none ${isFilled ? 'text-white' : 'text-[#333333]'}`}>
+                        {item.val}
+                      </span>
+                    )}
+                  </div>
+                );
+              })
             ) : (
               [1, 2, 3, 4].map((i) => (
                 <div key={i} className="relative w-[68px] h-[68px] flex items-center justify-center group cursor-pointer transition-transform duration-300 hover:-translate-y-1">
@@ -504,11 +524,13 @@ export default function LeftSide({ progress, setProgress }) {
           </div>
 
           <span className="text-[#333333] text-2xl font-medium tracking-wide uppercase">
-            {progress >= 115 
-              ? "UNLOCKED STARLIGHT TIER LEVEL" 
-              : progress >= 110 
-                ? "LEVEL UP TO STARLIGHT TIER" 
-                : "LEVEL UP TO SHINY TIER"}
+            {progress >= 120 
+              ? "BUY 1ST | SAVE 20%" 
+              : progress >= 115 
+                ? "UNLOCKED STARLIGHT TIER LEVEL" 
+                : progress >= 110 
+                  ? "LEVEL UP TO STARLIGHT TIER" 
+                  : "LEVEL UP TO SHINY TIER"}
           </span>
         </div>
       </div>
