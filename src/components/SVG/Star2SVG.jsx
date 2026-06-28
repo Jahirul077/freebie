@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Star2SVG() {
+export default function Star2SVG(props) {
   return (
     
-<svg width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
 <g filter="url(#filter0_d_18_2791)">
 <path d="M36.1919 18.3242C38.1012 27.4649 45.2984 34.6626 54.439 36.5723C45.2987 38.4818 38.1015 45.6791 36.1919 54.8193C34.2823 45.6788 27.0845 38.4815 17.9438 36.5723C27.0848 34.6629 34.2826 27.4652 36.1919 18.3242Z" fill="url(#paint0_linear_18_2791)" stroke="url(#paint1_linear_18_2791)"/>
 <path d="M21.2388 15.0791C22.2051 17.9795 24.4967 20.2717 27.397 21.2383C24.497 22.2048 22.2053 24.4965 21.2388 27.3965C20.2722 24.4962 17.98 22.2046 15.0796 21.2383C17.9803 20.2718 20.2723 17.9798 21.2388 15.0791Z" fill="url(#paint2_linear_18_2791)" stroke="url(#paint3_linear_18_2791)"/>

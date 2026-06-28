@@ -1,4 +1,4 @@
-export default function GradientRingSVG({ className, strokeWidth = "6", progress, style }) {
+export default function GradientRingSVG({ className, strokeWidth = "6", progress, style, galaxyTheme }) {
   const hasProgress = typeof progress === 'number';
   const circumference = 314.159;
   const displayProgress = progress >= 100 ? 100 : progress;
@@ -16,13 +16,13 @@ export default function GradientRingSVG({ className, strokeWidth = "6", progress
         strokeWidth={strokeWidth}
         vectorEffect="non-scaling-stroke"
       />
-      {/* Gold Progress Overlay Circle */}
+      {/* Gold/Galaxy Progress Overlay Circle */}
       {hasProgress && progress > 0 && progress !== 102 && progress !== 103 && progress !== 105 && (
         <circle
           cx="50"
           cy="50"
           r="50"
-          stroke="url(#paint0_linear_gold_progress)"
+          stroke={galaxyTheme ? "url(#paint0_linear_galaxy_progress)" : "url(#paint0_linear_gold_progress)"}
           strokeWidth={strokeWidth}
           vectorEffect="non-scaling-stroke"
           transform="rotate(-90 50 50)"
@@ -32,13 +32,13 @@ export default function GradientRingSVG({ className, strokeWidth = "6", progress
           style={{ strokeLinecap: 'round' }}
         />
       )}
-      {/* Wavy/Rough Gold Ring at 103% & 105% */}
+      {/* Wavy/Rough Gold/Galaxy Ring at 103% & 105% */}
       {hasProgress && (progress === 103 || progress === 105) && (
         <circle
           cx="50"
           cy="50"
           r="50"
-          stroke="url(#paint0_linear_gold_progress)"
+          stroke={galaxyTheme ? "url(#paint0_linear_galaxy_progress)" : "url(#paint0_linear_gold_progress)"}
           strokeWidth={strokeWidth}
           vectorEffect="non-scaling-stroke"
           filter="url(#wavy-noise)"
@@ -59,6 +59,11 @@ export default function GradientRingSVG({ className, strokeWidth = "6", progress
           <stop stopColor="#947863" />
           <stop offset="0.5" stopColor="#E9DDD4" />
           <stop offset="1" stopColor="#947863" />
+        </linearGradient>
+        <linearGradient id="paint0_linear_galaxy_progress" x1="0" y1="50" x2="100" y2="50" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#483951" />
+          <stop offset="0.5" stopColor="#675470" />
+          <stop offset="1" stopColor="#483951" />
         </linearGradient>
       </defs>
     </svg>
