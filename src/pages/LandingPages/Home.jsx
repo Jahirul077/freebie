@@ -48,6 +48,18 @@ export default function Home() {
         nextProgress = 112;
         delay = 1000;
       } else if (current === 112) {
+        nextProgress = 115;
+        delay = 3000;
+      } else if (current === 115) {
+        nextProgress = 116;
+        delay = 1800;
+      } else if (current === 116) {
+        nextProgress = 117;
+        delay = 1800;
+      } else if (current === 117) {
+        nextProgress = 118;
+        delay = 1800;
+      } else if (current === 118) {
         nextProgress = 0;
         delay = 5000;
       }

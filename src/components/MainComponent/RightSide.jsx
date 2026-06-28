@@ -33,7 +33,15 @@ export default function RightSide({ progress }) {
             {tierRewards.map((reward) => {
               const isUnlocked = 
                 (reward.id === 1 && progress >= 105) ||
-                (reward.id === 2 && progress >= 112);
+                (reward.id === 2 && progress >= 112) ||
+                (reward.id === 3 && progress >= 115);
+
+              let displayText = reward.text;
+              if (progress >= 115) {
+                if (reward.id === 1) displayText = "WELCOME GIFT\nONE-TIME 15% OFF";
+                if (reward.id === 2) displayText = "FREE SHIPPING\nON ALL ORDERS";
+              }
+
               return (
                 <div
                   key={reward.id}
@@ -58,6 +66,11 @@ export default function RightSide({ progress }) {
                     {isUnlocked ? (
                       reward.id === 2 ? (
                         <MdOutlineLocalShipping className="w-[30px] h-[30px] relative z-10" color="white" />
+                      ) : reward.id === 3 ? (
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10">
+                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                          <polyline points="22,6 12,13 2,6" />
+                        </svg>
                       ) : (
                         <GiftSVG className="w-[30px] h-[30px] relative z-10 text-[#9C9C9C]" />
                       )
@@ -66,7 +79,7 @@ export default function RightSide({ progress }) {
                     )}
                   </div>
                   <p className={`text-[13px] font-semibold leading-tight whitespace-pre-line tracking-tight uppercase mt-4 transition-colors duration-500 ${isUnlocked ? 'text-[#333333]' : 'text-[#9C9C9C]'}`}>
-                    {reward.text}
+                    {displayText}
                   </p>
                 </div>
               );
@@ -143,7 +156,14 @@ export default function RightSide({ progress }) {
           {isLocked && (
             <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
               <div className="flex items-center gap-3 mb-2">
-                {progress >= 112 ? (
+                {progress >= 115 ? (
+                  <>
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
+                    <LockSVG className="w-[22px] h-[28px]" />
+                  </>
+                ) : progress >= 112 ? (
                   <>
                     <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
                     <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
@@ -164,11 +184,13 @@ export default function RightSide({ progress }) {
                 )}
               </div>
               <p className="text-[13px] font-semibold text-[#333333] tracking-wider uppercase mt-1">
-                {progress >= 112 
-                  ? "LEVEL UP TO STARLIGHT TIER" 
-                  : progress >= 102 
-                    ? "LEVEL UP TO SHINY TIER" 
-                    : "SIGN UP TO JOIN VIP LOYALTY UNIVERSE CLUB"}
+                {progress >= 115 
+                  ? "UNLOCKED STARLIGHT TIER LEVEL" 
+                  : progress >= 112 
+                    ? "LEVEL UP TO STARLIGHT TIER" 
+                    : progress >= 102 
+                      ? "LEVEL UP TO SHINY TIER" 
+                      : "SIGN UP TO JOIN VIP LOYALTY UNIVERSE CLUB"}
               </p>
             </div>
           )}
