@@ -51,6 +51,24 @@ export default function Home() {
         nextProgress = 115;
         delay = 3000;
       } else if (current === 115) {
+        nextProgress = 122;
+        delay = 3000;
+      } else if (current === 122) {
+        nextProgress = 125;
+        delay = 3000;
+      } else if (current === 125) {
+        nextProgress = 128;
+        delay = 3000;
+      } else if (current === 128) {
+        nextProgress = 130;
+        delay = 3000;
+      } else if (current === 130) {
+        nextProgress = 135;
+        delay = 3000;
+      } else if (current === 135) {
+        nextProgress = 140;
+        delay = 3000;
+      } else if (current === 140) {
         nextProgress = 0;
         delay = 5000;
       }
@@ -75,7 +93,7 @@ export default function Home() {
             <div className="text-[#333333] text-5xl xl:text-7xl font-normal font-['Libre_Caslon_Text'] uppercase leading-tight">
               Shine Brighter as You Level Up
             </div>
-            
+
             {/* Play/Pause Demo Toggle Button */}
             <button
               onClick={() => setIsPlaying(!isPlaying)}
@@ -107,5 +125,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-  );  
+  );
 }

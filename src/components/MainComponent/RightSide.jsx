@@ -34,7 +34,13 @@ export default function RightSide({ progress }) {
               const isUnlocked = 
                 (reward.id === 1 && progress >= 105) ||
                 (reward.id === 2 && progress >= 112) ||
-                (reward.id === 3 && progress >= 115);
+                (reward.id === 3 && progress >= 115) ||
+                (reward.id === 4 && progress >= 122) ||
+                (reward.id === 5 && progress >= 125) ||
+                (reward.id === 6 && progress >= 128) ||
+                (reward.id === 7 && progress >= 130) ||
+                (reward.id === 8 && progress >= 135) ||
+                (reward.id === 9 && progress >= 140);
 
               let displayText = reward.text;
               if (progress >= 115) {
@@ -71,8 +77,42 @@ export default function RightSide({ progress }) {
                           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                           <polyline points="22,6 12,13 2,6" />
                         </svg>
+                      ) : reward.id === 4 ? (
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10">
+                          <line x1="12" y1="3" x2="12" y2="8" />
+                          <path d="M12 3c.5 1 1 1 1 2s-.5 2-1 2-1-1-1-2 0-1 1-2z" fill="white" stroke="none" />
+                          <path d="M6 14h12v-6H6zm-2 6h16v-6H4zM6 11h12M4 17h16" />
+                        </svg>
+                      ) : reward.id === 5 ? (
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10">
+                          <path d="M19 9c0-3.5-2.5-5-5-5h-4C7.5 4 5 5.5 5 9c0 4 2 6.5 2 9.5C7 21 9 22 12 22s5-1 5-3.5c0-3 2-5.5 2-9.5z" />
+                          <path d="M6 10h12" />
+                          <path d="M12 13v5" />
+                          <path d="M14 14.5h-3c-1 0-1.5-.5-1.5-1.2s.5-1.2 1.5-1.2h1c1 0 1.5-.5 1.5-1.2s-.5-1.2-1.5-1.2h-3" />
+                        </svg>
+                      ) : reward.id === 6 ? (
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10">
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                          <path d="M12 7c0 2 1.2 3 3 3c-1.8 0-3 1-3 3c0-2-1.2-3-3-3c1.8 0 3-1 3-3z" fill="white" stroke="none" />
+                        </svg>
+                      ) : reward.id === 7 ? (
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10">
+                          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
+                          <path d="M12 9l2.5 3-2.5 3-2.5-3z" fill="white" stroke="none" />
+                        </svg>
+                      ) : reward.id === 8 ? (
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10">
+                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                          <circle cx="12" cy="9" r="2" fill="white" stroke="none" />
+                          <path d="M9 13c0-1.5 1.5-2 3-2s3 .5 3 2" fill="white" stroke="none" />
+                        </svg>
+                      ) : reward.id === 9 ? (
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10">
+                          <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z" fill="white" stroke="none" />
+                          <rect x="5" y="16" width="14" height="3" rx="1" fill="white" stroke="none" />
+                        </svg>
                       ) : (
-                        <GiftSVG className="w-[30px] h-[30px] relative z-10 text-[#9C9C9C]" />
+                        <GiftSVG className="w-[30px] h-[30px] relative z-10 text-white" />
                       )
                     ) : (
                       <LockSVG className="w-[22px] h-[28px] relative z-10 text-[#9C9C9C]" />
@@ -156,7 +196,14 @@ export default function RightSide({ progress }) {
           {isLocked && (
             <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
               <div className="flex items-center gap-3 mb-2">
-                {progress >= 115 ? (
+                {progress >= 122 ? (
+                  <>
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
+                    <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
+                    <LockSVG className="w-[22px] h-[28px]" />
+                  </>
+                ) : progress >= 115 ? (
                   <>
                     <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
                     <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
@@ -184,13 +231,15 @@ export default function RightSide({ progress }) {
                 )}
               </div>
               <p className="text-[13px] font-semibold text-[#333333] tracking-wider uppercase mt-1">
-                {progress >= 115 
-                  ? "UNLOCKED STARLIGHT TIER LEVEL" 
-                  : progress >= 112 
-                    ? "LEVEL UP TO STARLIGHT TIER" 
-                    : progress >= 102 
-                      ? "LEVEL UP TO SHINY TIER" 
-                      : "SIGN UP TO JOIN VIP LOYALTY UNIVERSE CLUB"}
+                {progress >= 122
+                  ? "LEVEL UP TO GALAXY TIER"
+                  : progress >= 115 
+                    ? "UNLOCKED STARLIGHT TIER LEVEL" 
+                    : progress >= 112 
+                      ? "LEVEL UP TO STARLIGHT TIER" 
+                      : progress >= 102 
+                        ? "LEVEL UP TO SHINY TIER" 
+                        : "SIGN UP TO JOIN VIP LOYALTY UNIVERSE CLUB"}
               </p>
             </div>
           )}

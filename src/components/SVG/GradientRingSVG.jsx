@@ -1,13 +1,12 @@
-import React from 'react';
-
-export default function GradientRingSVG({ className, strokeWidth = "6", progress }) {
+export default function GradientRingSVG({ className, strokeWidth = "6", progress, style }) {
   const hasProgress = typeof progress === 'number';
   const circumference = 314.159;
   const displayProgress = progress >= 100 ? 100 : progress;
+  const isFull = displayProgress >= 100;
   const strokeDashoffset = hasProgress ? circumference - (circumference * displayProgress) / 100 : 0;
 
   return (
-    <svg className={className} viewBox="0 0 100 100" fill="none" overflow="visible" xmlns="http://www.w3.org/2000/svg">
+    <svg className={className} style={style} viewBox="0 0 100 100" fill="none" overflow="visible" xmlns="http://www.w3.org/2000/svg">
       {/* Gray Base Circle */}
       <circle
         cx="50"
@@ -27,8 +26,8 @@ export default function GradientRingSVG({ className, strokeWidth = "6", progress
           strokeWidth={strokeWidth}
           vectorEffect="non-scaling-stroke"
           transform="rotate(-90 50 50)"
-          strokeDasharray={circumference}
-          strokeDashoffset={strokeDashoffset}
+          strokeDasharray={isFull ? undefined : circumference}
+          strokeDashoffset={isFull ? undefined : strokeDashoffset}
           className="transition-all duration-700 ease-in-out"
           style={{ strokeLinecap: 'round' }}
         />
