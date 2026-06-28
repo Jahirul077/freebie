@@ -33,7 +33,7 @@ export default function LeftSide({ progress, setProgress }) {
                 <GradientRingSVG active={false} id="ring2" className={`absolute w-[165px] h-[165px] transition-all duration-700 ${progress === 105 ? '' : 'animate-[spin-slow_30s_linear_infinite_reverse]'}`} />
                 <GradientRingSVG active={false} id="ring3" className={`absolute w-[140px] h-[140px] transition-all duration-700 ${progress === 105 ? '' : 'animate-[spin-slow_20s_linear_infinite]'}`} />
                 {/* Innermost ring acts as the progress ring */}
-                <GradientRingSVG progress={progress} id="ring4" className={`absolute w-[115px] h-[115px] transition-all duration-700 ${progress === 105 ? 'opacity-50' : 'animate-[spin-slow_10s_linear_infinite_reverse]'}`} />
+                <GradientRingSVG progress={progress} id="ring4" className={`absolute w-[115px] h-[115px] transition-all duration-700 ${progress === 102 ? 'opacity-0 scale-95 pointer-events-none' : progress === 105 ? 'opacity-50' : progress === 100 ? '' : 'animate-[spin-slow_10s_linear_infinite_reverse]'}`} style={progress === 100 ? { transform: 'rotate(0deg)', animation: 'none' } : {}} />
 
                 <div className="absolute w-[95px] h-[95px] bg-white rounded-full flex items-center justify-center">
                   {progress === 105 ? (
@@ -89,7 +89,9 @@ export default function LeftSide({ progress, setProgress }) {
               else if (progress === 25) setProgress(50);
               else if (progress === 50) setProgress(75);
               else if (progress === 75) setProgress(100);
-              else if (progress === 100) setProgress(105);
+              else if (progress === 100) setProgress(102);
+              else if (progress === 102) setProgress(103);
+              else if (progress === 103) setProgress(105);
               else if (progress === 105) setProgress(0);
             }}
             className="w-full bg-white rounded-[16px] p-6 flex flex-col overflow-hidden relative transition-all duration-500 min-h-[156px] cursor-pointer hover:shadow-md hover:border-[#E9DDD4] active:scale-[0.99]"
@@ -99,7 +101,7 @@ export default function LeftSide({ progress, setProgress }) {
               <div 
                 className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${
                   progress === 105 
-                    ? 'h-0 opacity-0 -translate-y-[150%] pointer-events-none overflow-hidden' 
+                    ? 'h-0 opacity-0 translate-y-[-150%] pointer-events-none overflow-hidden' 
                     : 'opacity-100 translate-y-0'
                 }`}
               >
@@ -116,9 +118,19 @@ export default function LeftSide({ progress, setProgress }) {
                         </linearGradient>
                       </defs>
                     </svg>
-                    <span className="text-[28px] font-normal font-['Libre_Caslon_Text'] tracking-wide mt-1 text-[#333333]">S-BRILLET</span>
+                     <span className={`text-[28px] font-normal font-['Libre_Caslon_Text'] tracking-wide mt-1 transition-all duration-500 ${
+                      progress >= 100 
+                        ? 'text-[#333333]/70 line-through decoration-[#947863]/90 decoration-2' 
+                        : 'text-[#333333]'
+                    }`}>S-BRILLET</span>
                   </div>
-                  <span className="text-[15px] font-bold uppercase text-[#333333]">
+                  <span className={`text-[15px] font-bold uppercase transition-all duration-500 ${
+                    progress >= 100 
+                      ? 'text-[#947863]/70 line-through decoration-[#947863]/90 decoration-2' 
+                      : progress >= 75
+                        ? 'text-[#947863]'
+                        : 'text-[#333333]'
+                  }`}>
                     (0 Sparkle Points)
                   </span>
                 </div>
@@ -127,7 +139,7 @@ export default function LeftSide({ progress, setProgress }) {
                 
                 <div className="flex justify-between items-center pt-1">
                   <div className="flex items-center gap-2">
-                    {progress === 0 ? (
+                    {progress >= 75 ? (
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#333333]">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>

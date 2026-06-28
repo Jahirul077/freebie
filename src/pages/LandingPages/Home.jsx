@@ -21,10 +21,16 @@ export default function Home() {
       else if (current === 50) nextProgress = 75;
       else if (current === 75) nextProgress = 100;
       else if (current === 100) {
-        nextProgress = 105; // Go to Success state after 3s
+        nextProgress = 102;
+        delay = 3000;
+      } else if (current === 102) {
+        nextProgress = 103;
+        delay = 2000;
+      } else if (current === 103) {
+        nextProgress = 105;
         delay = 3000;
       } else if (current === 105) {
-        nextProgress = 0; // Go to 0% after 5s
+        nextProgress = 0;
         delay = 5000;
       }
 
@@ -44,7 +50,7 @@ export default function Home() {
       <img src={bgImage} alt="Background" className="w-full h-auto object-cover" />
       <div className="absolute top-10 left-0 w-full flex justify-center">
         <div className="w-full max-w-[1700px] px-4">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-[#E9DDD4]/40 pb-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-[#E9DDD4]/40 pb-2">
             <div className="text-[#333333] text-5xl xl:text-7xl font-normal font-['Libre_Caslon_Text'] uppercase leading-tight">
               Shine Brighter as You Level Up
             </div>

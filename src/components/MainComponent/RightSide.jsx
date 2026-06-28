@@ -31,7 +31,7 @@ export default function RightSide({ progress }) {
         <div className="bg-[#F9F6F5]/60 backdrop-blur-md rounded-[20px] p-5 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-white/40">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
             {tierRewards.map((reward) => {
-              const isUnlocked = reward.id === 1 && progress >= 100;
+              const isUnlocked = reward.id === 1 && progress >= 105;
               return (
                 <div
                   key={reward.id}
@@ -137,7 +137,7 @@ export default function RightSide({ progress }) {
           {isLocked && (
             <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
               <div className="flex items-center gap-3 mb-2">
-                {progress >= 100 ? (
+                {progress >= 102 ? (
                   <>
                     <UnlockSVG className="w-[22px] h-[28px] animate-pulse text-[#947863]" />
                     <LockSVG className="w-[22px] h-[28px]" />
@@ -151,7 +151,7 @@ export default function RightSide({ progress }) {
                 )}
               </div>
               <p className="text-[13px] font-semibold text-[#333333] tracking-wider uppercase mt-1">
-                {progress >= 100 ? "LEVEL UP TO SHINY TIER" : "SIGN UP TO JOIN VIP LOYALTY UNIVERSE CLUB"}
+                {progress >= 102 ? "LEVEL UP TO SHINY TIER" : "SIGN UP TO JOIN VIP LOYALTY UNIVERSE CLUB"}
               </p>
             </div>
           )}
