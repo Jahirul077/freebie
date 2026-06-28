@@ -466,7 +466,7 @@ export default function LeftSide({ progress, setProgress }) {
         <div className="bg-[#F9F6F5]/60 backdrop-blur-md rounded-[20px] p-6 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-white/40 flex flex-col items-center justify-center gap-6 transition-all duration-300 hover:shadow-[0_12px_24px_rgba(0,0,0,0.05)] hover:border-white/60">
 
           <div className="flex items-center justify-center gap-5 md:gap-8 w-full">
-            {progress >= 118 ? (
+            {progress >= 115 ? (
               [
                 { type: 'text', val: '20%' },
                 { type: 'text', val: '25%' },
@@ -504,7 +504,7 @@ export default function LeftSide({ progress, setProgress }) {
           </div>
 
           <span className="text-[#333333] text-2xl font-medium tracking-wide uppercase">
-            {progress >= 118 
+            {progress >= 115 
               ? "UNLOCKED STARLIGHT TIER LEVEL" 
               : progress >= 110 
                 ? "LEVEL UP TO STARLIGHT TIER" 
