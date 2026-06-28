@@ -29,14 +29,35 @@ export default function LeftSide({ progress, setProgress }) {
             <div className="flex-1 flex items-center justify-center py-4">
               <div className="w-[180px] h-[180px] relative flex items-center justify-center">
                 {/* Outermost three rings are always gray base (active=false) */}
-                <GradientRingSVG active={false} id="ring1" className={`absolute w-[190px] h-[190px] transition-all duration-700 ${progress === 105 ? '' : 'animate-[spin-slow_40s_linear_infinite]'}`} />
-                <GradientRingSVG active={false} id="ring2" className={`absolute w-[165px] h-[165px] transition-all duration-700 ${progress === 105 ? '' : 'animate-[spin-slow_30s_linear_infinite_reverse]'}`} />
-                <GradientRingSVG active={false} id="ring3" className={`absolute w-[140px] h-[140px] transition-all duration-700 ${progress === 105 ? '' : 'animate-[spin-slow_20s_linear_infinite]'}`} />
+                <GradientRingSVG active={false} id="ring1" className={`absolute w-[190px] h-[190px] transition-all duration-700 ${progress >= 105 ? '' : 'animate-[spin-slow_40s_linear_infinite]'}`} />
+                <GradientRingSVG active={false} id="ring2" className={`absolute w-[165px] h-[165px] transition-all duration-700 ${progress >= 105 ? '' : 'animate-[spin-slow_30s_linear_infinite_reverse]'}`} />
+                <GradientRingSVG 
+                  progress={progress === 105 ? 40 : progress === 106 ? 70 : null} 
+                  id="ring3" 
+                  className={`absolute w-[140px] h-[140px] transition-all duration-700 ${
+                    progress >= 105 
+                      ? '' 
+                      : 'animate-[spin-slow_20s_linear_infinite]'
+                  }`} 
+                />
                 {/* Innermost ring acts as the progress ring */}
-                <GradientRingSVG progress={progress} id="ring4" className={`absolute w-[115px] h-[115px] transition-all duration-700 ${progress === 102 ? 'opacity-0 scale-95 pointer-events-none' : progress === 105 ? 'opacity-50' : progress === 100 ? '' : 'animate-[spin-slow_10s_linear_infinite_reverse]'}`} style={progress === 100 ? { transform: 'rotate(0deg)', animation: 'none' } : {}} />
+                <GradientRingSVG 
+                  progress={progress >= 105 ? 105 : progress} 
+                  id="ring4" 
+                  className={`absolute w-[115px] h-[115px] transition-all duration-700 ${
+                    progress === 102 
+                      ? 'opacity-0 scale-95 pointer-events-none' 
+                      : progress >= 105 
+                        ? 'opacity-50' 
+                        : progress === 100 
+                          ? '' 
+                          : 'animate-[spin-slow_10s_linear_infinite_reverse]'
+                  }`} 
+                  style={progress === 100 ? { transform: 'rotate(0deg)', animation: 'none' } : {}} 
+                />
 
                 <div className="absolute w-[95px] h-[95px] bg-white rounded-full flex items-center justify-center">
-                  {progress === 105 ? (
+                  {progress >= 105 ? (
                     <svg width="50" height="50" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <polygon points="20,0 37.3,10 37.3,30 20,40 2.7,30 2.7,10" fill="url(#paint_hexagon_grad_center)" stroke="#C5B5A5" strokeWidth="0.8" />
                       <path d="M20,12 C20,17 23,20 28,20 C23,20 20,23 20,28 C20,23 17,20 12,20 C17,20 20,17 20,12 Z" fill="white" opacity="0.9" />
@@ -56,24 +77,11 @@ export default function LeftSide({ progress, setProgress }) {
             </div>
 
             {/* Points Box */}
-            <div className={`bg-white rounded-[16px] flex-[1.2] flex flex-col items-center justify-center py-8 border transition-all duration-1000 ${progress === 105 ? 'border-[#C5B5A5]' : progress >= 25 ? 'border-[#E9DDD4]' : 'border-transparent'}`}>
+            <div className={`bg-white rounded-[16px] flex-[1.2] flex flex-col items-center justify-center py-8 border transition-all duration-1000 ${progress >= 105 ? 'border-[#C5B5A5]' : progress >= 25 ? 'border-[#E9DDD4]' : 'border-transparent'}`}>
               <div className="flex items-center gap-1">
-                {progress === 105 ? (
-                  <span 
-                    style={{ 
-                      backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)', 
-                      WebkitBackgroundClip: 'text', 
-                      WebkitTextFillColor: 'transparent' 
-                    }} 
-                    className="text-[80px] font-bold leading-none transition-all duration-500"
-                  >
-                    40
-                  </span>
-                ) : (
-                  <span className="text-[80px] font-bold text-[#1E1E1E] leading-none transition-all duration-500">
-                    {progress === 100 ? '40' : progress >= 75 ? '40+' : '0+'}
-                  </span>
-                )}
+                <span className="text-[80px] font-bold text-[#1E1E1E] leading-none transition-all duration-500">
+                  {progress >= 100 ? '40' : progress >= 75 ? '40+' : '0+'}
+                </span>
                 <StarSVG />
               </div>
               <span className="font-inter text-[20px] font-semibold uppercase leading-[20px] tracking-normal align-middle">
@@ -92,15 +100,16 @@ export default function LeftSide({ progress, setProgress }) {
               else if (progress === 100) setProgress(102);
               else if (progress === 102) setProgress(103);
               else if (progress === 103) setProgress(105);
-              else if (progress === 105) setProgress(0);
+              else if (progress === 105) setProgress(106);
+              else if (progress === 106) setProgress(0);
             }}
             className="w-full bg-white rounded-[16px] p-6 flex flex-col overflow-hidden relative transition-all duration-500 min-h-[156px] cursor-pointer hover:shadow-md hover:border-[#E9DDD4] active:scale-[0.99]"
           >
             <div className="relative w-full transition-all duration-500 flex flex-col">
-              {/* S-BRILLET Container (slides up and fades out when progress === 105) */}
+              {/* S-BRILLET Container (slides up and fades out when progress >= 105) */}
               <div 
                 className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${
-                  progress === 105 
+                  progress >= 105 
                     ? 'h-0 opacity-0 translate-y-[-150%] pointer-events-none overflow-hidden' 
                     : 'opacity-100 translate-y-0'
                 }`}
@@ -182,10 +191,10 @@ export default function LeftSide({ progress, setProgress }) {
                 </div>
               </div>
 
-              {/* SHINY Container (slides in from below when progress === 105) */}
+              {/* SHINY Container (slides in from below when progress >= 105) */}
               <div 
                 className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${
-                  progress === 105 
+                  progress >= 105 
                     ? 'opacity-100 translate-y-0' 
                     : 'h-0 opacity-0 translate-y-[150%] pointer-events-none overflow-hidden'
                 }`}

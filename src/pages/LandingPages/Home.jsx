@@ -30,6 +30,9 @@ export default function Home() {
         nextProgress = 105;
         delay = 3000;
       } else if (current === 105) {
+        nextProgress = 106;
+        delay = 3000;
+      } else if (current === 106) {
         nextProgress = 0;
         delay = 5000;
       }
