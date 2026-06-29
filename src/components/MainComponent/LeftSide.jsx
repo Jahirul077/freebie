@@ -5,6 +5,7 @@ import GradientRingSVG from '../SVG/GradientRingSVG';
 import StarSVG from '../SVG/StarSVG';
 import LockSVG from '../SVG/LockSVG';
 import UnlockSVG from '../SVG/UnlockSVG';
+import rignImg from '../../assets/Images/rign.png';
 import ShipSVG from '../SVG/ShipSVG';
 import Star3SVG from '../SVG/Star3SVG';
 import Star4SVG from '../SVG/Star4SVG';
@@ -31,62 +32,73 @@ export default function LeftSide({ progress, setProgress }) {
             {/* Concentric Circles & Icon */}
             <div className="flex-1 flex items-center justify-center py-4">
               <div className="w-[180px] h-[180px] relative flex items-center justify-center">
-                {/* Outermost ring is inactive */}
-                <GradientRingSVG 
-                  active={false} 
-                  id="ring1" 
+                {/* Outermost ring handles Galaxy tier progress */}
+                <GradientRingSVG
+                  progress={progress >= 160 ? 105 : progress >= 155 ? 100 : progress >= 152 ? 75 : progress >= 150 ? 50 : progress >= 148 ? 25 : null}
+                  id="ring1"
                   galaxyTheme={progress >= 145}
-                  className={`absolute w-[190px] h-[190px] transition-all duration-700 ${progress >= 105 ? '' : 'animate-[spin-slow_40s_linear_infinite]'}`} 
-                  style={progress >= 105 ? { transform: 'rotate(0deg)', animation: 'none' } : {}}
+                  className={`absolute w-[190px] h-[190px] transition-all duration-700 z-30 ${progress >= 175 ? 'opacity-0 scale-95 pointer-events-none' : progress >= 160 ? 'opacity-100' : progress >= 105 ? '' : 'animate-[spin-slow_40s_linear_infinite]'}`}
+                  style={progress >= 105 && progress < 160 ? { transform: 'rotate(125deg)', animation: 'none' } : progress >= 160 ? { animation: 'spin 20s linear infinite' } : {}}
+                />
+                
+                {/* Final Rign Image */}
+                <img 
+                  src={rignImg} 
+                  alt="Galaxy Ring Final" 
+                  className={`absolute w-[190px] h-[190px] object-contain transition-all duration-700 z-40 ${progress >= 175 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+                  style={progress >= 175 ? { animation: 'spin 40s linear infinite' } : {}}
                 />
                 {/* Ring 2 shows 25% progress at progress >= 122, 50% at >= 125, 75% at >= 128, 100% at >= 130, and becomes wavy (105) at >= 140 */}
-                <GradientRingSVG 
-                  progress={progress >= 140 ? 105 : progress >= 130 ? 100 : progress >= 128 ? 75 : progress >= 125 ? 50 : progress >= 122 ? 25 : null} 
-                  id="ring2" 
+                <GradientRingSVG
+                  progress={progress >= 140 ? 105 : progress >= 130 ? 100 : progress >= 128 ? 75 : progress >= 125 ? 50 : progress >= 122 ? 25 : null}
+                  id="ring2"
                   galaxyTheme={progress >= 145}
-                  className={`absolute w-[165px] h-[165px] transition-all duration-700 ${progress >= 105 ? '' : 'animate-[spin-slow_30s_linear_infinite_reverse]'}`} 
+                  className={`absolute w-[165px] h-[165px] transition-all duration-700 ${progress >= 160 ? 'opacity-0 scale-95 pointer-events-none' : progress >= 145
+                      ? 'opacity-50'
+                      : progress >= 105
+                        ? ''
+                        : 'animate-[spin-slow_30s_linear_infinite_reverse]'
+                    }`}
                   style={progress >= 105 ? { transform: 'rotate(0deg)', animation: 'none' } : {}}
                 />
-                <GradientRingSVG 
+                <GradientRingSVG
                   progress={
-                    progress === 105 || progress === 106 ? 40 : 
-                    progress === 107 ? 70 : 
-                    progress === 108 || progress === 110 ? 100 : 
-                    progress === 111 || progress >= 112 ? 105 : null
-                  } 
-                  id="ring3" 
+                    progress === 105 || progress === 106 ? 40 :
+                      progress === 107 ? 70 :
+                        progress === 108 || progress === 110 ? 100 :
+                          progress === 111 || progress >= 112 ? 105 : null
+                  }
+                  id="ring3"
                   galaxyTheme={progress >= 145}
-                  className={`absolute w-[140px] h-[140px] transition-all duration-700 ${
-                    progress === 110 
-                      ? 'opacity-0 scale-95 pointer-events-none' 
-                      : progress === 111 
+                  className={`absolute w-[140px] h-[140px] transition-all duration-700 ${progress >= 160 ? 'opacity-0 scale-95 pointer-events-none' : progress === 110
+                      ? 'opacity-0 scale-95 pointer-events-none'
+                      : progress === 111
                         ? 'opacity-100'
                         : progress >= 112
                           ? 'opacity-50'
-                          : progress >= 105 
-                            ? '' 
+                          : progress >= 105
+                            ? ''
                             : 'animate-[spin-slow_20s_linear_infinite]'
-                  }`} 
+                    }`}
                   style={progress >= 105 ? { transform: 'rotate(0deg)', animation: 'none' } : {}}
                 />
                 {/* Innermost ring acts as the progress ring */}
-                <GradientRingSVG 
-                  progress={progress >= 105 ? 105 : progress} 
-                  id="ring4" 
+                <GradientRingSVG
+                  progress={progress >= 105 ? 105 : progress}
+                  id="ring4"
                   galaxyTheme={progress >= 145}
-                  className={`absolute w-[115px] h-[115px] transition-all duration-700 ${
-                    progress === 102 
-                      ? 'opacity-0 scale-95 pointer-events-none' 
-                      : progress === 103 
+                  className={`absolute w-[115px] h-[115px] transition-all duration-700 ${progress >= 160 ? 'opacity-0 scale-95 pointer-events-none' : progress === 102
+                      ? 'opacity-0 scale-95 pointer-events-none'
+                      : progress === 103
                         ? 'opacity-100'
-                        : progress >= 105 
+                        : progress >= 105
                           ? 'opacity-50'
                           : 'animate-[spin-slow_10s_linear_infinite_reverse]'
-                  }`} 
-                  style={progress >= 100 ? { transform: 'rotate(0deg)', animation: 'none' } : {}} 
+                    }`}
+                  style={progress >= 100 ? { transform: 'rotate(0deg)', animation: 'none' } : {}}
                 />
 
-                <div className="absolute w-[95px] h-[95px] bg-white rounded-full flex items-center justify-center">
+                <div className={`absolute w-[95px] h-[95px] bg-white rounded-full flex items-center justify-center transition-all duration-700 z-20 ${progress >= 175 ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100'}`}>
                   {progress >= 145 ? (
                     <Star4SVG className="w-[67px] h-[67px] relative z-10" />
                   ) : progress >= 112 ? (
@@ -113,28 +125,36 @@ export default function LeftSide({ progress, setProgress }) {
             {/* Points Box */}
             <div className={`bg-white rounded-[16px] flex-[1.2] flex flex-col items-center justify-center py-8 border transition-all duration-1000 ${progress >= 105 ? 'border-[#C5B5A5]' : progress >= 25 ? 'border-[#E9DDD4]' : 'border-transparent'}`}>
               <div className="flex items-center gap-1">
-                {progress >= 145 ? (
+                {progress >= 175 ? (
                   <span className="text-[80px] font-bold text-[#1E1E1E] leading-none transition-all duration-500">
-                    700+
+                    0
                   </span>
-                ) : progress >= 140 ? (
-                  <span 
-                    style={{ 
-                      backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)', 
-                      WebkitBackgroundClip: 'text', 
-                      WebkitTextFillColor: 'transparent' 
-                    }} 
+                ) : progress >= 155 ? (
+                  <span className="text-[80px] font-bold text-[#1E1E1E] leading-none transition-all duration-500">
+                    1000
+                  </span>
+                ) : progress >= 152 ? (
+                  <span className="text-[80px] font-bold text-[#1E1E1E] leading-none transition-all duration-500">
+                    850
+                  </span>
+                ) : progress >= 145 ? (
+                  <span
+                    style={{
+                      backgroundImage: 'linear-gradient(90deg, #483951 0%, #675470 50%, #483951 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent'
+                    }}
                     className="text-[80px] font-bold leading-none transition-all duration-500"
                   >
-                    700+
+                    700
                   </span>
-                ) : progress >= 135 ? (
-                  <span 
-                    style={{ 
-                      backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)', 
-                      WebkitBackgroundClip: 'text', 
-                      WebkitTextFillColor: 'transparent' 
-                    }} 
+                ) : progress >= 140 ? (
+                  <span
+                    style={{
+                      backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent'
+                    }}
                     className="text-[80px] font-bold leading-none transition-all duration-500"
                   >
                     700
@@ -156,12 +176,12 @@ export default function LeftSide({ progress, setProgress }) {
                     225
                   </span>
                 ) : progress === 112 ? (
-                  <span 
-                    style={{ 
-                      backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)', 
-                      WebkitBackgroundClip: 'text', 
-                      WebkitTextFillColor: 'transparent' 
-                    }} 
+                  <span
+                    style={{
+                      backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent'
+                    }}
                     className="text-[80px] font-bold leading-none transition-all duration-500"
                   >
                     100+
@@ -184,7 +204,7 @@ export default function LeftSide({ progress, setProgress }) {
           </div>
 
           {/* S-BRILLET / SHINY Bar */}
-          <div 
+          <div
             onClick={() => {
               if (progress === 0) setProgress(25);
               else if (progress === 25) setProgress(50);
@@ -207,18 +227,31 @@ export default function LeftSide({ progress, setProgress }) {
               else if (progress === 130) setProgress(135);
               else if (progress === 135) setProgress(140);
               else if (progress === 140) setProgress(145);
-              else if (progress === 145) setProgress(0);
+              else if (progress === 145) setProgress(148);
+              else if (progress === 148) setProgress(150);
+              else if (progress === 150) setProgress(152);
+              else if (progress === 152) setProgress(155);
+              else if (progress === 155) setProgress(160);
+              else if (progress === 160) setProgress(162);
+              else if (progress === 162) setProgress(165);
+              else if (progress === 165) setProgress(170);
+              else if (progress === 170) setProgress(175);
+              else if (progress === 175) setProgress(180);
+              else if (progress === 180) setProgress(185);
+              else if (progress === 185) setProgress(190);
+              else if (progress === 190) setProgress(195);
+              else if (progress === 195) setProgress(200);
+              else if (progress === 200) setProgress(0);
             }}
             className="w-full bg-white rounded-[16px] p-6 flex flex-col overflow-hidden relative transition-all duration-500 min-h-[156px] cursor-pointer hover:shadow-md hover:border-[#E9DDD4] active:scale-[0.99]"
           >
             <div className="relative w-full transition-all duration-500 flex flex-col">
               {/* S-BRILLET Container (slides up and fades out when progress >= 105) */}
-              <div 
-                className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${
-                  progress >= 105 
-                    ? 'h-0 opacity-0 translate-y-[-150%] pointer-events-none overflow-hidden' 
+              <div
+                className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${progress >= 105
+                    ? 'h-0 opacity-0 translate-y-[-150%] pointer-events-none overflow-hidden'
                     : 'opacity-100 translate-y-0'
-                }`}
+                  }`}
               >
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-3">
@@ -233,25 +266,23 @@ export default function LeftSide({ progress, setProgress }) {
                         </linearGradient>
                       </defs>
                     </svg>
-                     <span className={`text-[28px] font-normal font-['Libre_Caslon_Text'] tracking-wide mt-1 transition-all duration-500 ${
-                      progress >= 100 
-                        ? 'text-[#333333]/70 line-through decoration-[#947863]/90 decoration-2' 
+                    <span className={`text-[28px] font-normal font-['Libre_Caslon_Text'] tracking-wide mt-1 transition-all duration-500 ${progress >= 100
+                        ? 'text-[#333333]/70 line-through decoration-[#947863]/90 decoration-2'
                         : 'text-[#333333]'
-                    }`}>S-BRILLET</span>
+                      }`}>S-BRILLET</span>
                   </div>
-                  <span className={`text-[15px] font-bold uppercase transition-all duration-500 ${
-                    progress >= 100 
-                      ? 'text-[#947863]/70 line-through decoration-[#947863]/90 decoration-2' 
+                  <span className={`text-[15px] font-bold uppercase transition-all duration-500 ${progress >= 100
+                      ? 'text-[#947863]/70 line-through decoration-[#947863]/90 decoration-2'
                       : progress >= 75
                         ? 'text-[#947863]'
                         : 'text-[#333333]'
-                  }`}>
+                    }`}>
                     (0 Sparkle Points)
                   </span>
                 </div>
-                
+
                 <div className="h-[2px] w-full bg-linear-to-r from-[#947863] via-[#E9DDD4] to-[#947863] opacity-60"></div>
-                
+
                 <div className="flex justify-between items-center pt-1">
                   <div className="flex items-center gap-2">
                     {progress >= 75 ? (
@@ -273,14 +304,14 @@ export default function LeftSide({ progress, setProgress }) {
                     )}
                     <span className="text-[17px] font-medium text-[#333333]">Sign Up</span>
                   </div>
-                  
+
                   {progress === 50 ? (
-                    <span 
-                      style={{ 
-                        backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)', 
-                        WebkitBackgroundClip: 'text', 
-                        WebkitTextFillColor: 'transparent' 
-                      }} 
+                    <span
+                      style={{
+                        backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent'
+                      }}
                       className="text-[17px] font-bold"
                     >
                       +40 Sparkle Points
@@ -298,14 +329,13 @@ export default function LeftSide({ progress, setProgress }) {
               </div>
 
               {/* SHINY Container (slides in from below when progress >= 105 and slides up when progress >= 115) */}
-              <div 
-                className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${
-                  progress >= 115
+              <div
+                className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${progress >= 115
                     ? 'h-0 opacity-0 translate-y-[-150%] pointer-events-none overflow-hidden'
-                    : progress >= 105 
-                      ? 'opacity-100 translate-y-0' 
+                    : progress >= 105
+                      ? 'opacity-100 translate-y-0'
                       : 'h-0 opacity-0 translate-y-[150%] pointer-events-none overflow-hidden'
-                }`}
+                  }`}
               >
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-3">
@@ -323,12 +353,12 @@ export default function LeftSide({ progress, setProgress }) {
                     <span className="text-[28px] font-normal font-['Libre_Caslon_Text'] tracking-wide mt-1 text-[#333333]">SHINY</span>
                   </div>
                   {progress === 108 ? (
-                    <span 
-                      style={{ 
-                        backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)', 
-                        WebkitBackgroundClip: 'text', 
-                        WebkitTextFillColor: 'transparent' 
-                      }} 
+                    <span
+                      style={{
+                        backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent'
+                      }}
                       className="text-[15px] font-bold uppercase"
                     >
                       (100 Sparkle Points)
@@ -343,9 +373,9 @@ export default function LeftSide({ progress, setProgress }) {
                     </span>
                   )}
                 </div>
-                
+
                 <div className="h-[2px] w-full bg-linear-to-r from-[#947863] via-[#E9DDD4] to-[#947863] opacity-60"></div>
-                
+
                 <div className="flex justify-between items-center pt-1">
                   <div className="flex items-center gap-2">
                     {progress >= 106 ? (
@@ -368,12 +398,12 @@ export default function LeftSide({ progress, setProgress }) {
                     <span className="text-[17px] font-medium text-[#333333]">Follow us on Instagram</span>
                   </div>
                   {progress === 106 ? (
-                    <span 
-                      style={{ 
-                        backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)', 
-                        WebkitBackgroundClip: 'text', 
-                        WebkitTextFillColor: 'transparent' 
-                      }} 
+                    <span
+                      style={{
+                        backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent'
+                      }}
                       className="text-[17px] font-bold"
                     >
                       +30 Sparkle Points
@@ -411,12 +441,12 @@ export default function LeftSide({ progress, setProgress }) {
                     <span className="text-[17px] font-medium text-[#333333]">Subscribe to Newsletter</span>
                   </div>
                   {progress === 107 ? (
-                    <span 
-                      style={{ 
-                        backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)', 
-                        WebkitBackgroundClip: 'text', 
-                        WebkitTextFillColor: 'transparent' 
-                      }} 
+                    <span
+                      style={{
+                        backgroundImage: 'linear-gradient(90deg, #947863 0%, #E9DDD4 50%, #947863 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent'
+                      }}
                       className="text-[17px] font-bold"
                     >
                       +30 Sparkle Points
@@ -434,12 +464,11 @@ export default function LeftSide({ progress, setProgress }) {
               </div>
 
               {/* STARLIGHT Container (slides in from below when progress >= 115 and < 145) */}
-              <div 
-                className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${
-                  progress >= 115 && progress < 145 
-                    ? 'opacity-100 translate-y-0' 
+              <div
+                className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${progress >= 115 && progress < 145
+                    ? 'opacity-100 translate-y-0'
                     : 'h-0 opacity-0 translate-y-[150%] pointer-events-none overflow-hidden'
-                }`}
+                  }`}
               >
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-3">
@@ -454,25 +483,23 @@ export default function LeftSide({ progress, setProgress }) {
                         </linearGradient>
                       </defs>
                     </svg>
-                    <span className={`text-[28px] font-normal font-['Libre_Caslon_Text'] tracking-wide mt-1 transition-all duration-500 ${
-                      progress >= 140 
-                        ? 'text-black line-through' 
+                    <span className={`text-[28px] font-normal font-['Libre_Caslon_Text'] tracking-wide mt-1 transition-all duration-500 ${progress >= 140
+                        ? 'text-black line-through'
                         : 'text-black'
-                    }`}>STARLIGHT</span>
+                      }`}>STARLIGHT</span>
                   </div>
-                  <span className={`text-[15px] font-bold uppercase transition-all duration-500 ${
-                    progress >= 135 
-                      ? 'text-[#947863]/60 line-through decoration-[#947863]/90 decoration-2' 
-                      : progress >= 130 
-                        ? 'text-[#947863]' 
+                  <span className={`text-[15px] font-bold uppercase transition-all duration-500 ${progress >= 135
+                      ? 'text-[#947863]/60 line-through decoration-[#947863]/90 decoration-2'
+                      : progress >= 130
+                        ? 'text-[#947863]'
                         : 'text-[#333333]'
-                  }`}>
+                    }`}>
                     (700 Sparkle Points)
                   </span>
                 </div>
-                
+
                 <div className="h-[2px] w-full bg-linear-to-r from-[#947863] via-[#E9DDD4] to-[#947863] opacity-60"></div>
-                
+
                 <div className="flex justify-between items-center pt-1">
                   <div className="flex items-center gap-2">
                     {progress >= 125 ? (
@@ -494,13 +521,12 @@ export default function LeftSide({ progress, setProgress }) {
                     )}
                     <span className={`text-[17px] font-medium transition-colors duration-500 ${progress >= 125 ? 'text-[#947863]' : 'text-[#333333]'}`}>Purchase Items</span>
                   </div>
-                  <span className={`text-[17px] font-semibold transition-colors duration-500 ${
-                    progress >= 135 
-                      ? 'text-[#947863]/60 line-through decoration-[#947863]/90 decoration-2' 
-                      : progress >= 125 
-                        ? 'text-[#947863]' 
+                  <span className={`text-[17px] font-semibold transition-colors duration-500 ${progress >= 135
+                      ? 'text-[#947863]/60 line-through decoration-[#947863]/90 decoration-2'
+                      : progress >= 125
+                        ? 'text-[#947863]'
                         : 'text-[#333333]'
-                  }`}>
+                    }`}>
                     $1 = +1.25 Sparkle Points
                   </span>
                 </div>
@@ -526,25 +552,23 @@ export default function LeftSide({ progress, setProgress }) {
                     )}
                     <span className={`text-[17px] font-medium transition-colors duration-500 ${progress >= 128 ? 'text-[#947863]' : 'text-[#333333]'}`}>Refer a Friend</span>
                   </div>
-                  <span className={`text-[17px] font-semibold transition-colors duration-500 ${
-                    progress >= 135 
-                      ? 'text-[#947863]/60 line-through decoration-[#947863]/90 decoration-2' 
-                      : progress >= 128 
-                        ? 'text-[#947863]' 
+                  <span className={`text-[17px] font-semibold transition-colors duration-500 ${progress >= 135
+                      ? 'text-[#947863]/60 line-through decoration-[#947863]/90 decoration-2'
+                      : progress >= 128
+                        ? 'text-[#947863]'
                         : 'text-[#333333]'
-                  }`}>
+                    }`}>
                     +125 Sparkle Points
                   </span>
                 </div>
               </div>
 
               {/* GALAXY Container (slides in from below when progress >= 145) */}
-              <div 
-                className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${
-                  progress >= 145 
-                    ? 'opacity-100 translate-y-0' 
+              <div
+                className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${progress >= 145
+                    ? 'opacity-100 translate-y-0'
                     : 'h-0 opacity-0 translate-y-[150%] pointer-events-none overflow-hidden'
-                }`}
+                  }`}
               >
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-3">
@@ -559,51 +583,69 @@ export default function LeftSide({ progress, setProgress }) {
                         </linearGradient>
                       </defs>
                     </svg>
-                    <span className="text-[28px] font-normal font-['Libre_Caslon_Text'] tracking-wide mt-1 text-[#333333]">GALAXY</span>
+                    <span className="text-[28px] font-normal font-['Libre_Caslon_Text'] tracking-wide mt-1 text-[#333333]">
+                      {progress >= 155 ? "ULTRA GALAXY" : "GALAXY"}
+                    </span>
                   </div>
                   <span className="text-[15px] font-bold uppercase text-[#333333]">
-                    (1000 Sparkle Points)
+                    {progress >= 155 ? "(+1000 Sparkle Points)" : "(1000 Sparkle Points)"}
                   </span>
                 </div>
-                
+
                 <div className="h-[2px] w-full bg-linear-to-r from-[#483951] via-[#675470] to-[#483951] opacity-60"></div>
-                
+
                 <div className="flex justify-between items-center pt-1">
                   <div className="flex items-center gap-2">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="12" cy="12" r="10" fill="url(#paint_galaxy_checkmark_bg1)" />
-                      <path d="M8.5 12.5L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <defs>
-                        <linearGradient id="paint_galaxy_checkmark_bg1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-                          <stop stopColor="#483951" />
-                          <stop offset="0.5" stopColor="#675470" />
-                          <stop offset="1" stopColor="#483951" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                    <span className="text-[17px] font-medium text-[#333333]">Purchase Items</span>
+                    {progress >= 150 ? (
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="url(#paint_galaxy_checkmark_bg1)" />
+                        <path d="M8.5 12.5L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <defs>
+                          <linearGradient id="paint_galaxy_checkmark_bg1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                            <stop stopColor="#483951" />
+                            <stop offset="0.5" stopColor="#675470" />
+                            <stop offset="1" stopColor="#483951" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    ) : (
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#333333]">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    )}
+                    <span className={`text-[17px] font-medium transition-colors duration-500 ${progress >= 150 ? 'text-[#483951]' : 'text-[#333333]'}`}>Purchase Items</span>
                   </div>
-                  <span className="text-[17px] font-semibold text-[#333333]">
+                  <span className={`text-[17px] font-semibold transition-colors duration-500 ${
+                    progress >= 150 ? 'text-[#483951]' : 'text-[#333333]'
+                  }`}>
                     $1 = +1.50 Sparkle Points
                   </span>
                 </div>
 
                 <div className="flex justify-between items-center pt-1">
                   <div className="flex items-center gap-2">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="12" cy="12" r="10" fill="url(#paint_galaxy_checkmark_bg2)" />
-                      <path d="M8.5 12.5L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <defs>
-                        <linearGradient id="paint_galaxy_checkmark_bg2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-                          <stop stopColor="#483951" />
-                          <stop offset="0.5" stopColor="#675470" />
-                          <stop offset="1" stopColor="#483951" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                    <span className="text-[17px] font-medium text-[#333333]">Refer a Friend</span>
+                    {progress >= 152 ? (
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="url(#paint_galaxy_checkmark_bg2)" />
+                        <path d="M8.5 12.5L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <defs>
+                          <linearGradient id="paint_galaxy_checkmark_bg2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                            <stop stopColor="#483951" />
+                            <stop offset="0.5" stopColor="#675470" />
+                            <stop offset="1" stopColor="#483951" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    ) : (
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#333333]">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    )}
+                    <span className={`text-[17px] font-medium transition-colors duration-500 ${progress >= 152 ? 'text-[#483951]' : 'text-[#333333]'}`}>Refer a Friend</span>
                   </div>
-                  <span className="text-[17px] font-semibold text-[#333333]">
+                  <span className={`text-[17px] font-semibold transition-colors duration-500 ${
+                    progress >= 152 ? 'text-[#483951]' : 'text-[#333333]'
+                  }`}>
                     +150 Sparkle Points
                   </span>
                 </div>
@@ -621,7 +663,7 @@ export default function LeftSide({ progress, setProgress }) {
           Unlock Bundle Deals
         </h2>
 
-        <div className="bg-[#F9F6F5]/60 backdrop-blur-md rounded-[20px] p-6 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-white/40 flex flex-col items-center justify-center gap-6 transition-all duration-300 hover:shadow-[0_12px_24px_rgba(0,0,0,0.05)] hover:border-white/60">
+        <div className="bg-[#F9F6F5]/60 backdrop-blur-md rounded-[20px] p-6 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-white/40 flex flex-col items-center justify-center gap-6">
 
           <div className="flex items-center justify-center gap-5 md:gap-8 w-full">
             {progress >= 115 ? (
@@ -636,21 +678,31 @@ export default function LeftSide({ progress, setProgress }) {
                 { type: 'text', val: '35%' },
                 { type: 'icon', val: '✦' }
               ]).map((item, idx) => {
-                const isFilled = progress < 145 && (
-                  (idx === 0 && progress >= 115) || 
-                  (idx === 1 && progress >= 125) || 
-                  (idx === 2 && progress >= 128) || 
+                const isFilled = (progress >= 145) ? (
+                  (idx === 0 && progress >= 148) || 
+                  (idx === 1 && progress >= 150) || 
+                  (idx === 2 && progress >= 152) || 
+                  (idx === 3 && progress >= 155)
+                ) : (
+                  (idx === 0 && progress >= 115) ||
+                  (idx === 1 && progress >= 125) ||
+                  (idx === 2 && progress >= 128) ||
                   (idx === 3 && progress >= 130)
                 );
                 return (
-                  <div key={idx} className="relative w-[68px] h-[68px] flex items-center justify-center group cursor-pointer transition-transform duration-300 hover:-translate-y-1">
+                  <div key={idx} className="relative w-[68px] h-[68px] flex items-center justify-center">
                     {/* Jewel Diamond Shape */}
-                    <svg viewBox="0 0 24 24" fill={isFilled ? "url(#paint_starlight_diamond_bg)" : "white"} xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full drop-shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+                    <svg viewBox="0 0 24 24" fill={isFilled ? (progress >= 145 ? "url(#paint_galaxy_diamond_bg)" : "url(#paint_starlight_diamond_bg)") : "white"} xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full drop-shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
                       <defs>
                         <linearGradient id="paint_starlight_diamond_bg" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
                           <stop stopColor="#947863" />
                           <stop offset="0.5" stopColor="#E9DDD4" />
                           <stop offset="1" stopColor="#947863" />
+                        </linearGradient>
+                        <linearGradient id="paint_galaxy_diamond_bg" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                          <stop stopColor="#483951" />
+                          <stop offset="0.5" stopColor="#675470" />
+                          <stop offset="1" stopColor="#483951" />
                         </linearGradient>
                       </defs>
                       <path d="M5 2H19L24 9L12 22L0 9L5 2Z" />
@@ -682,19 +734,29 @@ export default function LeftSide({ progress, setProgress }) {
           </div>
 
           <span className="text-[#333333] text-2xl font-medium tracking-wide uppercase">
-            {progress >= 145
+            {progress >= 160
+              ? "MAX GALAXY TIER LEVEL ACHIEVED"
+              : progress >= 155
+                ? "GET 1 + 1 FREE ON NEXT ORDER"
+              : progress >= 152
+                ? "BUY 3RD | SAVE 45%"
+              : progress >= 150
+                ? "BUY 2ND | SAVE 35%"
+              : progress >= 148
+                ? "BUY 1ST | SAVE 25%"
+              : progress >= 145
               ? "UNLOCKED GALAXY TIER LEVEL"
               : progress >= 130
                 ? "GET 1 + 1 FREE ON NEXT ORDER"
-              : progress >= 128
-                ? "BUY 3RD | SAVE 35%"
-                : progress >= 125
-                  ? "BUY 2ND | SAVE 25%"
-                  : progress >= 115 
-                    ? "BUY 1ST | SAVE 20%" 
-                    : progress >= 110 
-                      ? "LEVEL UP TO STARLIGHT TIER" 
-                      : "LEVEL UP TO SHINY TIER"}
+                : progress >= 128
+                  ? "BUY 3RD | SAVE 35%"
+                  : progress >= 125
+                    ? "BUY 2ND | SAVE 25%"
+                    : progress >= 115
+                      ? "BUY 1ST | SAVE 20%"
+                      : progress >= 110
+                        ? "LEVEL UP TO STARLIGHT TIER"
+                        : "LEVEL UP TO SHINY TIER"}
           </span>
         </div>
       </div>
