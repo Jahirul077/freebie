@@ -9,6 +9,8 @@ import rignImg from '../../assets/Images/rign.png';
 import ShipSVG from '../SVG/ShipSVG';
 import Star3SVG from '../SVG/Star3SVG';
 import Star4SVG from '../SVG/Star4SVG';
+import rign from '../../assets/Images/rign.png';
+import ring2 from '../../assets/Images/ring2.png';
 
 export default function LeftSide({ progress, setProgress }) {
   // Determine style of the '+40 Sparkle Points' text
@@ -43,8 +45,8 @@ export default function LeftSide({ progress, setProgress }) {
                 
                 {/* Final Rign Image */}
                 <img 
-                  src={rignImg} 
-                  alt="Galaxy Ring Final" 
+                  src={progress >= 675 ? ring2 : rign} 
+                  alt="Galaxy Ring" 
                   className={`absolute w-[190px] h-[190px] object-contain transition-all duration-700 z-40 ${progress >= 175 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
                   style={progress >= 175 ? { animation: 'spin 40s linear infinite' } : {}}
                 />
@@ -127,7 +129,7 @@ export default function LeftSide({ progress, setProgress }) {
               <div className="flex items-center gap-1">
                 {progress >= 175 ? (
                   <span className="text-[80px] font-bold text-[#1E1E1E] leading-none transition-all duration-500">
-                    0
+                    {progress >= 675 ? "+1000" : (progress - 175) * 2}
                   </span>
                 ) : progress >= 155 ? (
                   <span className="text-[80px] font-bold text-[#1E1E1E] leading-none transition-all duration-500">
@@ -235,15 +237,14 @@ export default function LeftSide({ progress, setProgress }) {
               else if (progress === 160) setProgress(162);
               else if (progress === 162) setProgress(165);
               else if (progress === 165) setProgress(170);
-              else if (progress === 170) setProgress(175);
-              else if (progress === 175) setProgress(180);
-              else if (progress === 180) setProgress(185);
-              else if (progress === 185) setProgress(190);
-              else if (progress === 190) setProgress(195);
-              else if (progress === 195) setProgress(200);
-              else if (progress === 200) setProgress(0);
+              else if (progress >= 170) {
+                if (progress === 170) setProgress(175);
+                else if (progress === 175) setProgress(225);
+                else if (progress >= 675) setProgress(0);
+                else setProgress(progress + 25);
+              }
             }}
-            className="w-full bg-white rounded-[16px] p-6 flex flex-col overflow-hidden relative transition-all duration-500 min-h-[156px] cursor-pointer hover:shadow-md hover:border-[#E9DDD4] active:scale-[0.99]"
+            className="w-full bg-white rounded-[16px] p-6 flex flex-col overflow-hidden relative transition-all duration-500 min-h-[156px]"
           >
             <div className="relative w-full transition-all duration-500 flex flex-col">
               {/* S-BRILLET Container (slides up and fades out when progress >= 105) */}
@@ -721,13 +722,13 @@ export default function LeftSide({ progress, setProgress }) {
               })
             ) : (
               [1, 2, 3, 4].map((i) => (
-                <div key={i} className="relative w-[68px] h-[68px] flex items-center justify-center group cursor-pointer transition-transform duration-300 hover:-translate-y-1">
+                <div key={i} className="relative w-[68px] h-[68px] flex items-center justify-center">
                   {/* Jewel Diamond Shape */}
                   <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full drop-shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
                     <path d="M5 2H19L24 9L12 22L0 9L5 2Z" />
                   </svg>
                   {/* The user's custom Lock/Unlock SVG */}
-                  <LockSVG className="w-[20px] h-[28px] relative z-10 -mt-3 transition-transform duration-300 group-hover:scale-110 animate-wiggle-hover" />
+                  <LockSVG className="w-[20px] h-[28px] relative z-10 -mt-3" />
                 </div>
               ))
             )}

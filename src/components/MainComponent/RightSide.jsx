@@ -21,6 +21,19 @@ const tierRewards = [
 ];
 
 export default function RightSide({ progress }) {
+  const getFillWidth = () => {
+    if (progress < 175) return '0%';
+    const points = (progress - 175) * 2;
+    if (points <= 100) return `${(points / 100) * 12}%`;
+    if (points <= 200) return `${12 + ((points - 100) / 100) * 15}%`; // 12% to 27%
+    if (points <= 300) return `${27 + ((points - 200) / 100) * 16}%`; // 27% to 43%
+    if (points <= 400) return `${43 + ((points - 300) / 100) * 15}%`; // 43% to 58%
+    if (points <= 500) return `${58 + ((points - 400) / 100) * 16}%`; // 58% to 74%
+    if (points <= 750) return `${74 + ((points - 500) / 250) * 16}%`; // 74% to 90%
+    if (points <= 1000) return `${90 + ((points - 750) / 250) * 10}%`; // 90% to 100%
+    return '100%';
+  };
+
   return (
     <div className="lg:col-span-7 flex flex-col gap-10">
       {/* UNLOCK TIER REWARDS Section */}
@@ -158,7 +171,7 @@ export default function RightSide({ progress }) {
                 {/* Progress Bar Fill */}
                 <div 
                   className="absolute left-0 top-0 bottom-0 bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-1000"
-                  style={{ width: progress >= 200 ? '100%' : progress >= 195 ? '80%' : progress >= 190 ? '60%' : progress >= 185 ? '40%' : progress >= 180 ? '20%' : '0%' }}
+                  style={{ width: getFillWidth() }}
                 >
                   {/* Glowing Star Thumb */}
                   <div className="absolute -right-[14px] top-1/2 -translate-y-1/2 text-white drop-shadow-[0_0_12px_rgba(255,255,255,1)]">

@@ -72,6 +72,39 @@ export default function Home() {
         nextProgress = 145;
         delay = 3000;
       } else if (current === 145) {
+        nextProgress = 148;
+        delay = 2000;
+      } else if (current === 148) {
+        nextProgress = 150;
+        delay = 2000;
+      } else if (current === 150) {
+        nextProgress = 152;
+        delay = 2000;
+      } else if (current === 152) {
+        nextProgress = 155;
+        delay = 2000;
+      } else if (current === 155) {
+        nextProgress = 160;
+        delay = 2000;
+      } else if (current === 160) {
+        nextProgress = 162;
+        delay = 2000;
+      } else if (current === 162) {
+        nextProgress = 165;
+        delay = 2000;
+      } else if (current === 165) {
+        nextProgress = 170;
+        delay = 2000;
+      } else if (current === 170) {
+        nextProgress = 175;
+        delay = 2000;
+      } else if (current === 175) {
+        nextProgress = 225; // Directly to 100 Points
+        delay = 2500;
+      } else if (current >= 225 && current < 675) {
+        nextProgress = current + 25; // Steps by 50 Points
+        delay = 2000;
+      } else if (current >= 675) {
         nextProgress = 0;
         delay = 5000;
       }
