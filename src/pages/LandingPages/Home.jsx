@@ -121,11 +121,11 @@ export default function Home() {
   }, [isPlaying, progress]);
 
   return (
-    <div className="relative w-full min-h-screen pb-16">
+    <div className="relative w-full min-h-screen pb-10">
       <img src={bgImage} alt="Background" className="w-full h-auto object-cover" />
-      <div className="absolute top-10 left-0 w-full flex justify-center">
+      <div className="absolute top-6 left-0 w-full flex justify-center">
         <div className="w-full max-w-[1700px] px-4">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-[#E9DDD4]/40 pb-2">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-[#E9DDD4]/40 ">
             <div className="text-[#333333] text-5xl xl:text-7xl font-normal font-['Libre_Caslon_Text'] uppercase leading-tight">
               Shine Brighter as You Level Up
             </div>
@@ -154,7 +154,7 @@ export default function Home() {
           </div>
 
           {/* Content Grid */}
-          <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          <div className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             <LeftSide progress={progress} setProgress={setProgress} />
             <RightSide progress={progress} />
           </div>

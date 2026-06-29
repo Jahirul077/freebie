@@ -35,7 +35,7 @@ export default function RightSide({ progress }) {
   };
 
   return (
-    <div className="lg:col-span-7 flex flex-col gap-10">
+    <div className="lg:col-span-7 flex flex-col gap-7">
       {/* UNLOCK TIER REWARDS Section */}
       <div className="flex flex-col gap-3">
         <h2 className="text-[#4A4A4A] text-[15px] font-medium tracking-wide uppercase ml-1">
@@ -70,7 +70,7 @@ export default function RightSide({ progress }) {
               return (
                 <div
                   key={reward.id}
-                  className={`bg-white rounded-[16px] flex flex-col items-center justify-center p-3 h-[189px] text-center shadow-[0_2px_10px_rgba(0,0,0,0.02)] border transition-all duration-500 ${isUnlocked ? (progress >= 145 ? 'border-[#483951]/60 shadow-[0_4px_15px_rgba(72,57,81,0.06)]' : 'border-[#C5B5A5]') : 'border-transparent'}`}
+                  className={`bg-white rounded-[16px] flex flex-col items-center justify-center p-3 h-[210px] text-center shadow-[0_2px_10px_rgba(0,0,0,0.02)] border transition-all duration-500 ${isUnlocked ? (progress >= 145 ? 'border-[#483951]/60 shadow-[0_4px_15px_rgba(72,57,81,0.06)]' : 'border-[#C5B5A5]') : 'border-transparent'}`}
                 >
                   <div className="relative w-16 h-16 flex items-center justify-center mb-2">
                     <svg viewBox="0 0 50 50" className="absolute inset-0 w-full h-full drop-shadow-[0_2px_4px_rgba(0,0,0,0.04)]">

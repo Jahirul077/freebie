@@ -21,7 +21,7 @@ export default function LeftSide({ progress, setProgress }) {
   };
 
   return (
-    <div className="lg:col-span-5 flex flex-col gap-10">
+    <div className="lg:col-span-5 flex flex-col gap-6">
       {/* EARN SPARKLE POINTS Section */}
       <div className="flex flex-col gap-3">
         <h2 className="text-[#4A4A4A] text-[15px] font-medium tracking-wide uppercase ml-1">
@@ -42,11 +42,11 @@ export default function LeftSide({ progress, setProgress }) {
                   className={`absolute w-[190px] h-[190px] transition-all duration-700 z-30 ${progress >= 175 ? 'opacity-0 scale-95 pointer-events-none' : progress >= 160 ? 'opacity-100' : progress >= 105 ? '' : 'animate-[spin-slow_40s_linear_infinite]'}`}
                   style={progress >= 105 && progress < 160 ? { transform: 'rotate(125deg)', animation: 'none' } : progress >= 160 ? { animation: 'spin 20s linear infinite' } : {}}
                 />
-                
+
                 {/* Final Rign Image */}
-                <img 
-                  src={progress >= 675 ? ring2 : rign} 
-                  alt="Galaxy Ring" 
+                <img
+                  src={progress >= 675 ? ring2 : rign}
+                  alt="Galaxy Ring"
                   className={`absolute w-[190px] h-[190px] object-contain transition-all duration-700 z-40 ${progress >= 175 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
                   style={progress >= 175 ? { animation: 'spin 40s linear infinite' } : {}}
                 />
@@ -56,10 +56,10 @@ export default function LeftSide({ progress, setProgress }) {
                   id="ring2"
                   galaxyTheme={progress >= 145}
                   className={`absolute w-[165px] h-[165px] transition-all duration-700 ${progress >= 160 ? 'opacity-0 scale-95 pointer-events-none' : progress >= 145
-                      ? 'opacity-50'
-                      : progress >= 105
-                        ? ''
-                        : 'animate-[spin-slow_30s_linear_infinite_reverse]'
+                    ? 'opacity-50'
+                    : progress >= 105
+                      ? ''
+                      : 'animate-[spin-slow_30s_linear_infinite_reverse]'
                     }`}
                   style={progress >= 105 ? { transform: 'rotate(0deg)', animation: 'none' } : {}}
                 />
@@ -73,14 +73,14 @@ export default function LeftSide({ progress, setProgress }) {
                   id="ring3"
                   galaxyTheme={progress >= 145}
                   className={`absolute w-[140px] h-[140px] transition-all duration-700 ${progress >= 160 ? 'opacity-0 scale-95 pointer-events-none' : progress === 110
-                      ? 'opacity-0 scale-95 pointer-events-none'
-                      : progress === 111
-                        ? 'opacity-100'
-                        : progress >= 112
-                          ? 'opacity-50'
-                          : progress >= 105
-                            ? ''
-                            : 'animate-[spin-slow_20s_linear_infinite]'
+                    ? 'opacity-0 scale-95 pointer-events-none'
+                    : progress === 111
+                      ? 'opacity-100'
+                      : progress >= 112
+                        ? 'opacity-50'
+                        : progress >= 105
+                          ? ''
+                          : 'animate-[spin-slow_20s_linear_infinite]'
                     }`}
                   style={progress >= 105 ? { transform: 'rotate(0deg)', animation: 'none' } : {}}
                 />
@@ -90,12 +90,12 @@ export default function LeftSide({ progress, setProgress }) {
                   id="ring4"
                   galaxyTheme={progress >= 145}
                   className={`absolute w-[115px] h-[115px] transition-all duration-700 ${progress >= 160 ? 'opacity-0 scale-95 pointer-events-none' : progress === 102
-                      ? 'opacity-0 scale-95 pointer-events-none'
-                      : progress === 103
-                        ? 'opacity-100'
-                        : progress >= 105
-                          ? 'opacity-50'
-                          : 'animate-[spin-slow_10s_linear_infinite_reverse]'
+                    ? 'opacity-0 scale-95 pointer-events-none'
+                    : progress === 103
+                      ? 'opacity-100'
+                      : progress >= 105
+                        ? 'opacity-50'
+                        : 'animate-[spin-slow_10s_linear_infinite_reverse]'
                     }`}
                   style={progress >= 100 ? { transform: 'rotate(0deg)', animation: 'none' } : {}}
                 />
@@ -250,8 +250,8 @@ export default function LeftSide({ progress, setProgress }) {
               {/* S-BRILLET Container (slides up and fades out when progress >= 105) */}
               <div
                 className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${progress >= 105
-                    ? 'h-0 opacity-0 translate-y-[-150%] pointer-events-none overflow-hidden'
-                    : 'opacity-100 translate-y-0'
+                  ? 'h-0 opacity-0 translate-y-[-150%] pointer-events-none overflow-hidden'
+                  : 'opacity-100 translate-y-0'
                   }`}
               >
                 <div className="flex justify-between items-center">
@@ -268,15 +268,15 @@ export default function LeftSide({ progress, setProgress }) {
                       </defs>
                     </svg>
                     <span className={`text-[28px] font-normal font-['Libre_Caslon_Text'] tracking-wide mt-1 transition-all duration-500 ${progress >= 100
-                        ? 'text-[#333333]/70 line-through decoration-[#947863]/90 decoration-2'
-                        : 'text-[#333333]'
+                      ? 'text-[#333333]/70 line-through decoration-[#947863]/90 decoration-2'
+                      : 'text-[#333333]'
                       }`}>S-BRILLET</span>
                   </div>
                   <span className={`text-[15px] font-bold uppercase transition-all duration-500 ${progress >= 100
-                      ? 'text-[#947863]/70 line-through decoration-[#947863]/90 decoration-2'
-                      : progress >= 75
-                        ? 'text-[#947863]'
-                        : 'text-[#333333]'
+                    ? 'text-[#947863]/70 line-through decoration-[#947863]/90 decoration-2'
+                    : progress >= 75
+                      ? 'text-[#947863]'
+                      : 'text-[#333333]'
                     }`}>
                     (0 Sparkle Points)
                   </span>
@@ -332,10 +332,10 @@ export default function LeftSide({ progress, setProgress }) {
               {/* SHINY Container (slides in from below when progress >= 105 and slides up when progress >= 115) */}
               <div
                 className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${progress >= 115
-                    ? 'h-0 opacity-0 translate-y-[-150%] pointer-events-none overflow-hidden'
-                    : progress >= 105
-                      ? 'opacity-100 translate-y-0'
-                      : 'h-0 opacity-0 translate-y-[150%] pointer-events-none overflow-hidden'
+                  ? 'h-0 opacity-0 translate-y-[-150%] pointer-events-none overflow-hidden'
+                  : progress >= 105
+                    ? 'opacity-100 translate-y-0'
+                    : 'h-0 opacity-0 translate-y-[150%] pointer-events-none overflow-hidden'
                   }`}
               >
                 <div className="flex justify-between items-center">
@@ -467,8 +467,8 @@ export default function LeftSide({ progress, setProgress }) {
               {/* STARLIGHT Container (slides in from below when progress >= 115 and < 145) */}
               <div
                 className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${progress >= 115 && progress < 145
-                    ? 'opacity-100 translate-y-0'
-                    : 'h-0 opacity-0 translate-y-[150%] pointer-events-none overflow-hidden'
+                  ? 'opacity-100 translate-y-0'
+                  : 'h-0 opacity-0 translate-y-[150%] pointer-events-none overflow-hidden'
                   }`}
               >
                 <div className="flex justify-between items-center">
@@ -485,15 +485,15 @@ export default function LeftSide({ progress, setProgress }) {
                       </defs>
                     </svg>
                     <span className={`text-[28px] font-normal font-['Libre_Caslon_Text'] tracking-wide mt-1 transition-all duration-500 ${progress >= 140
-                        ? 'text-black line-through'
-                        : 'text-black'
+                      ? 'text-black line-through'
+                      : 'text-black'
                       }`}>STARLIGHT</span>
                   </div>
                   <span className={`text-[15px] font-bold uppercase transition-all duration-500 ${progress >= 135
-                      ? 'text-[#947863]/60 line-through decoration-[#947863]/90 decoration-2'
-                      : progress >= 130
-                        ? 'text-[#947863]'
-                        : 'text-[#333333]'
+                    ? 'text-[#947863]/60 line-through decoration-[#947863]/90 decoration-2'
+                    : progress >= 130
+                      ? 'text-[#947863]'
+                      : 'text-[#333333]'
                     }`}>
                     (700 Sparkle Points)
                   </span>
@@ -523,10 +523,10 @@ export default function LeftSide({ progress, setProgress }) {
                     <span className={`text-[17px] font-medium transition-colors duration-500 ${progress >= 125 ? 'text-[#947863]' : 'text-[#333333]'}`}>Purchase Items</span>
                   </div>
                   <span className={`text-[17px] font-semibold transition-colors duration-500 ${progress >= 135
-                      ? 'text-[#947863]/60 line-through decoration-[#947863]/90 decoration-2'
-                      : progress >= 125
-                        ? 'text-[#947863]'
-                        : 'text-[#333333]'
+                    ? 'text-[#947863]/60 line-through decoration-[#947863]/90 decoration-2'
+                    : progress >= 125
+                      ? 'text-[#947863]'
+                      : 'text-[#333333]'
                     }`}>
                     $1 = +1.25 Sparkle Points
                   </span>
@@ -554,10 +554,10 @@ export default function LeftSide({ progress, setProgress }) {
                     <span className={`text-[17px] font-medium transition-colors duration-500 ${progress >= 128 ? 'text-[#947863]' : 'text-[#333333]'}`}>Refer a Friend</span>
                   </div>
                   <span className={`text-[17px] font-semibold transition-colors duration-500 ${progress >= 135
-                      ? 'text-[#947863]/60 line-through decoration-[#947863]/90 decoration-2'
-                      : progress >= 128
-                        ? 'text-[#947863]'
-                        : 'text-[#333333]'
+                    ? 'text-[#947863]/60 line-through decoration-[#947863]/90 decoration-2'
+                    : progress >= 128
+                      ? 'text-[#947863]'
+                      : 'text-[#333333]'
                     }`}>
                     +125 Sparkle Points
                   </span>
@@ -567,8 +567,8 @@ export default function LeftSide({ progress, setProgress }) {
               {/* GALAXY Container (slides in from below when progress >= 145) */}
               <div
                 className={`transition-all duration-700 ease-in-out flex flex-col gap-4 ${progress >= 145
-                    ? 'opacity-100 translate-y-0'
-                    : 'h-0 opacity-0 translate-y-[150%] pointer-events-none overflow-hidden'
+                  ? 'opacity-100 translate-y-0'
+                  : 'h-0 opacity-0 translate-y-[150%] pointer-events-none overflow-hidden'
                   }`}
               >
                 <div className="flex justify-between items-center">
@@ -616,9 +616,8 @@ export default function LeftSide({ progress, setProgress }) {
                     )}
                     <span className={`text-[17px] font-medium transition-colors duration-500 ${progress >= 150 ? 'text-[#483951]' : 'text-[#333333]'}`}>Purchase Items</span>
                   </div>
-                  <span className={`text-[17px] font-semibold transition-colors duration-500 ${
-                    progress >= 150 ? 'text-[#483951]' : 'text-[#333333]'
-                  }`}>
+                  <span className={`text-[17px] font-semibold transition-colors duration-500 ${progress >= 150 ? 'text-[#483951]' : 'text-[#333333]'
+                    }`}>
                     $1 = +1.50 Sparkle Points
                   </span>
                 </div>
@@ -644,9 +643,8 @@ export default function LeftSide({ progress, setProgress }) {
                     )}
                     <span className={`text-[17px] font-medium transition-colors duration-500 ${progress >= 152 ? 'text-[#483951]' : 'text-[#333333]'}`}>Refer a Friend</span>
                   </div>
-                  <span className={`text-[17px] font-semibold transition-colors duration-500 ${
-                    progress >= 152 ? 'text-[#483951]' : 'text-[#333333]'
-                  }`}>
+                  <span className={`text-[17px] font-semibold transition-colors duration-500 ${progress >= 152 ? 'text-[#483951]' : 'text-[#333333]'
+                    }`}>
                     +150 Sparkle Points
                   </span>
                 </div>
@@ -680,9 +678,9 @@ export default function LeftSide({ progress, setProgress }) {
                 { type: 'icon', val: '✦' }
               ]).map((item, idx) => {
                 const isFilled = (progress >= 145) ? (
-                  (idx === 0 && progress >= 148) || 
-                  (idx === 1 && progress >= 150) || 
-                  (idx === 2 && progress >= 152) || 
+                  (idx === 0 && progress >= 148) ||
+                  (idx === 1 && progress >= 150) ||
+                  (idx === 2 && progress >= 152) ||
                   (idx === 3 && progress >= 155)
                 ) : (
                   (idx === 0 && progress >= 115) ||
@@ -739,25 +737,25 @@ export default function LeftSide({ progress, setProgress }) {
               ? "MAX GALAXY TIER LEVEL ACHIEVED"
               : progress >= 155
                 ? "GET 1 + 1 FREE ON NEXT ORDER"
-              : progress >= 152
-                ? "BUY 3RD | SAVE 45%"
-              : progress >= 150
-                ? "BUY 2ND | SAVE 35%"
-              : progress >= 148
-                ? "BUY 1ST | SAVE 25%"
-              : progress >= 145
-              ? "UNLOCKED GALAXY TIER LEVEL"
-              : progress >= 130
-                ? "GET 1 + 1 FREE ON NEXT ORDER"
-                : progress >= 128
-                  ? "BUY 3RD | SAVE 35%"
-                  : progress >= 125
-                    ? "BUY 2ND | SAVE 25%"
-                    : progress >= 115
-                      ? "BUY 1ST | SAVE 20%"
-                      : progress >= 110
-                        ? "LEVEL UP TO STARLIGHT TIER"
-                        : "LEVEL UP TO SHINY TIER"}
+                : progress >= 152
+                  ? "BUY 3RD | SAVE 45%"
+                  : progress >= 150
+                    ? "BUY 2ND | SAVE 35%"
+                    : progress >= 148
+                      ? "BUY 1ST | SAVE 25%"
+                      : progress >= 145
+                        ? "UNLOCKED GALAXY TIER LEVEL"
+                        : progress >= 130
+                          ? "GET 1 + 1 FREE ON NEXT ORDER"
+                          : progress >= 128
+                            ? "BUY 3RD | SAVE 35%"
+                            : progress >= 125
+                              ? "BUY 2ND | SAVE 25%"
+                              : progress >= 115
+                                ? "BUY 1ST | SAVE 20%"
+                                : progress >= 110
+                                  ? "LEVEL UP TO STARLIGHT TIER"
+                                  : "LEVEL UP TO SHINY TIER"}
           </span>
         </div>
       </div>
