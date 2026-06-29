@@ -29,7 +29,7 @@ export default function LeftSide({ progress, setProgress }) {
         </h2>
 
         <div className={`bg-[#F9F6F5]/60 backdrop-blur-md rounded-[20px] p-5 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border transition-all duration-1000 ${progress >= 25 ? 'border-[#E9DDD4]' : 'border-white/40'}`}>
-          <div className="flex flex-col md:flex-row gap-5 mb-5">
+          <div className="flex flex-col md:flex-row gap-5 mb-5 ">
 
             {/* Concentric Circles & Icon */}
             <div className="flex-1 flex items-center justify-center py-4">
@@ -39,8 +39,8 @@ export default function LeftSide({ progress, setProgress }) {
                   progress={progress >= 160 ? 105 : progress >= 155 ? 100 : progress >= 152 ? 75 : progress >= 150 ? 50 : progress >= 148 ? 25 : null}
                   id="ring1"
                   galaxyTheme={progress >= 145}
-                  className={`absolute w-[190px] h-[190px] transition-all duration-700 z-30 ${progress >= 175 ? 'opacity-0 scale-95 pointer-events-none' : progress >= 160 ? 'opacity-100' : progress >= 105 ? '' : 'animate-[spin-slow_40s_linear_infinite]'}`}
-                  style={progress >= 105 && progress < 160 ? { transform: 'rotate(125deg)', animation: 'none' } : progress >= 160 ? { animation: 'spin 20s linear infinite' } : {}}
+                  className={`absolute w-[190px] h-[190px] transition-all duration-700 z-30 ${progress >= 175 ? 'opacity-0 scale-95 pointer-events-none' : progress >= 160 ? 'opacity-100' : ''} ${progress >= 160 ? 'animate-[spin_20s_linear_infinite]' : ''}`}
+                  style={{}}
                 />
 
                 {/* Final Rign Image */}
@@ -48,20 +48,13 @@ export default function LeftSide({ progress, setProgress }) {
                   src={progress >= 675 ? ring2 : rign}
                   alt="Galaxy Ring"
                   className={`absolute w-[190px] h-[190px] object-contain transition-all duration-700 z-40 ${progress >= 175 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
-                  style={progress >= 175 ? { animation: 'spin 40s linear infinite' } : {}}
                 />
                 {/* Ring 2 shows 25% progress at progress >= 122, 50% at >= 125, 75% at >= 128, 100% at >= 130, and becomes wavy (105) at >= 140 */}
                 <GradientRingSVG
                   progress={progress >= 140 ? 105 : progress >= 130 ? 100 : progress >= 128 ? 75 : progress >= 125 ? 50 : progress >= 122 ? 25 : null}
                   id="ring2"
                   galaxyTheme={progress >= 145}
-                  className={`absolute w-[165px] h-[165px] transition-all duration-700 ${progress >= 160 ? 'opacity-0 scale-95 pointer-events-none' : progress >= 145
-                    ? 'opacity-50'
-                    : progress >= 105
-                      ? ''
-                      : 'animate-[spin-slow_30s_linear_infinite_reverse]'
-                    }`}
-                  style={progress >= 105 ? { transform: 'rotate(0deg)', animation: 'none' } : {}}
+                  className={`absolute w-[165px] h-[165px] transition-all duration-700 ${progress >= 160 ? 'opacity-0 scale-95 pointer-events-none' : progress >= 145 ? 'opacity-50' : ''} ${progress >= 140 ? 'animate-[spin_30s_linear_infinite_reverse]' : ''}`}
                 />
                 <GradientRingSVG
                   progress={
@@ -78,11 +71,8 @@ export default function LeftSide({ progress, setProgress }) {
                       ? 'opacity-100'
                       : progress >= 112
                         ? 'opacity-50'
-                        : progress >= 105
-                          ? ''
-                          : 'animate-[spin-slow_20s_linear_infinite]'
-                    }`}
-                  style={progress >= 105 ? { transform: 'rotate(0deg)', animation: 'none' } : {}}
+                        : ''
+                    } ${progress >= 111 ? 'animate-[spin_20s_linear_infinite]' : ''}`}
                 />
                 {/* Innermost ring acts as the progress ring */}
                 <GradientRingSVG
@@ -95,9 +85,8 @@ export default function LeftSide({ progress, setProgress }) {
                       ? 'opacity-100'
                       : progress >= 105
                         ? 'opacity-50'
-                        : 'animate-[spin-slow_10s_linear_infinite_reverse]'
-                    }`}
-                  style={progress >= 100 ? { transform: 'rotate(0deg)', animation: 'none' } : {}}
+                        : ''
+                    } ${progress >= 103 ? 'animate-[spin_10s_linear_infinite_reverse]' : ''}`}
                 />
 
                 <div className={`absolute w-[95px] h-[95px] bg-white rounded-full flex items-center justify-center transition-all duration-700 z-20 ${progress >= 175 ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100'}`}>
@@ -244,7 +233,7 @@ export default function LeftSide({ progress, setProgress }) {
                 else setProgress(progress + 25);
               }
             }}
-            className="w-full bg-white rounded-[16px] p-6 flex flex-col overflow-hidden relative transition-all duration-500 min-h-[156px]"
+            className="w-full bg-white rounded-[16px] p-6 flex flex-col overflow-hidden relative transition-all duration-500 min-h-[209px]"
           >
             <div className="relative w-full transition-all duration-500 flex flex-col">
               {/* S-BRILLET Container (slides up and fades out when progress >= 105) */}
